@@ -1,0 +1,38 @@
+.controller i {
+  font-size: 32px;
+  color: var(--bg-color-1);
+}
+
+.controller__item {
+  cursor: pointer;
+}
+
+.controller__item span {
+  font-size: 1.4rem;
+}
+
+/* Import file */
+.importFile__btnSummit {
+  background-color: var(--bg-color-1);
+  border: none;
+  margin: 0 10px;
+  color: var(--text-white);
+}
+
+.importFile__btnSummit:hover {
+  opacity: 0.9;
+  color: var(--text-white);
+}
+
+.disabledButton {
+  background-color: var(--bg-color-1);
+  border: none;
+  margin: 0 10px;
+  color: var(--text-white);
+}
+.disabledButton:hover{
+  color: var(--text-white);
+}
+
+
+

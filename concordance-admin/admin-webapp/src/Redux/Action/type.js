@@ -1,0 +1,3 @@
+export const FETCH_VI_DATA = "VI_DATA";
+export const FETCH_EN_DATA = "EN_DATA";
+export const UPLOAD_DATA_LANGUAGE="UPLOAD_DATA_LANGUAGE";
