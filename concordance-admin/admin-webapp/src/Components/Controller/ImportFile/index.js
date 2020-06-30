@@ -26,14 +26,10 @@ class ImportFile extends Component {
   fileUploadHandler = (event) => {
     event.preventDefault();
     const fd = new FormData();
-    fd.append(
-      "fileUpload",
-      this.state.selectedFile,
-      this.state.selectedFile.name
-    );
+    fd.append("filename", this.state.selectedFile);
     axios
       .post(
-        `http://127.0.0.1:8000/api/${this.state.selectedLanguage}/upload`,
+        `http://127.0.0.1:8000/api/${this.state.selectedLanguage}/upload/`,
         fd,
         {
           onUploadProgress: (progressEvent) => {
