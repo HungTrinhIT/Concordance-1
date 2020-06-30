@@ -1,8 +1,0 @@
-.modalButton_submit{
-    background-color: var(--bg-color-1);
-    color:var(--text-white);
-    border: none;
-}
-.modalButton_submit:hover{
-    background-color: var(--bg-color-3);
-}

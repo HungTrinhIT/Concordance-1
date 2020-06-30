@@ -110,7 +110,7 @@ class ImportFile extends Component {
                 <input
                   className="form-check-input"
                   type="radio"
-                  id="inlineCheckbox1"
+                  id="inlineCheckbox2"
                   value="vidata"
                   name="selectedLanguage"
                   onChange={this.onChangeHandler}
