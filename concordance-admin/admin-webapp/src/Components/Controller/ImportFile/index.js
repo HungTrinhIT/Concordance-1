@@ -26,13 +26,10 @@ class ImportFile extends Component {
   fileUploadHandler = (event) => {
     event.preventDefault();
     const fd = new FormData();
-    fd.append(
-      "filename",
-      this.state.selectedFile,
-    );
+    fd.append("filename", this.state.selectedFile);
     axios
       .post(
-        `http://127.0.0.1:8000/api/${this.state.selectedLanguage}/upload/`,
+        `http://127.0.0.1:8000/api/upload/?lang=${this.state.selectedLanguage}/`,
         fd,
         {
           onUploadProgress: (progressEvent) => {
@@ -97,7 +94,7 @@ class ImportFile extends Component {
                   className="form-check-input"
                   type="radio"
                   id="inlineCheckbox1"
-                  value="endata"
+                  value="en"
                   name="selectedLanguage"
                   onChange={this.onChangeHandler}
                 />
@@ -110,7 +107,7 @@ class ImportFile extends Component {
                   className="form-check-input"
                   type="radio"
                   id="inlineCheckbox2"
-                  value="vidata"
+                  value="vn"
                   name="selectedLanguage"
                   onChange={this.onChangeHandler}
                 />
