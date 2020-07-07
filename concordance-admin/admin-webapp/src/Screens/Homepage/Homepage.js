@@ -33,24 +33,26 @@ class Homepage extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    dataService
-      .fetchLanguageData_pagination(nextProps.pageNumber, "vndata")
-      .then((res) => {
-        this.props.dispatch(createAciton(FETCH_VI_DATA, res.data.results));
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
+    if (this.props.pageNumber !== nextProps.pageNumber) {
+      dataService
+        .fetchLanguageData_pagination(nextProps.pageNumber, "vndata")
+        .then((res) => {
+          this.props.dispatch(createAciton(FETCH_VI_DATA, res.data.results));
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
 
-    // Get enData
-    dataService
-      .fetchLanguageData_pagination(nextProps.pageNumber, "endata")
-      .then((res) => {
-        this.props.dispatch(createAciton(FETCH_EN_DATA, res.data.results));
-      })
-      .catch((err) => {
-        console.log(err.message);
-      });
+      // Get enData
+      dataService
+        .fetchLanguageData_pagination(nextProps.pageNumber, "endata")
+        .then((res) => {
+          this.props.dispatch(createAciton(FETCH_EN_DATA, res.data.results));
+        })
+        .catch((err) => {
+          console.log(err.message);
+        });
+    }
   }
   render() {
     console.log("render homepage:", this.props.pageNumber);
