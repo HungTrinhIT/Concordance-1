@@ -16,7 +16,7 @@ class Homepage extends Component {
     // Get viData
     
      dataService
-      .fetchLanguageData_pagination(this.props.pageNumber, "vnData")
+      .fetchLanguageData_pagination(this.props.pageNumber, "vndata")
       .then((res) => {
         this.props.dispatch(createAciton(FETCH_VI_DATA, res.data.results));
       })
@@ -26,7 +26,7 @@ class Homepage extends Component {
       // this.props.dispatch(createAciton(FETCH_VI_DATA, ViData.results));
     // Get enData
      dataService
-      .fetchLanguageData_pagination(this.props.pageNumber, "enData")
+      .fetchLanguageData_pagination(this.props.pageNumber, "endata")
       .then((res) => {
         this.props.dispatch(createAciton(FETCH_EN_DATA, res.data.results));
       })
