@@ -11,10 +11,7 @@ import { dataService } from "../../Services/index";
 
 class Homepage extends Component {
   componentDidMount() {
-    // Call API here(componentDidMount) to get the ViData and EngData, then those data will be stored in Redux store
-    // After that, we will get ViData and EngData from store and pass those data to EngTable and ViTable
-    // Get viData
-
+    // Get VnData
     dataService
       .fetchLanguageData_pagination(this.props.pageNumber, "vndata")
       .then((res) => {
@@ -23,7 +20,7 @@ class Homepage extends Component {
       .catch((err) => {
         console.log(err.message);
       });
-    // this.props.dispatch(createAciton(FETCH_VI_DATA, ViData.results));
+
     // Get enData
     dataService
       .fetchLanguageData_pagination(this.props.pageNumber, "endata")
@@ -33,9 +30,30 @@ class Homepage extends Component {
       .catch((err) => {
         console.log(err.message);
       });
-    // this.props.dispatch(createAciton(FETCH_EN_DATA, EnData.results));
+  }
+
+  shouldComponentUpdate(nextProps, nextState) {
+    dataService
+      .fetchLanguageData_pagination(nextProps.pageNumber, "vndata")
+      .then((res) => {
+        this.props.dispatch(createAciton(FETCH_VI_DATA, res.data.results));
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+
+    // Get enData
+    dataService
+      .fetchLanguageData_pagination(nextProps.pageNumber, "endata")
+      .then((res) => {
+        this.props.dispatch(createAciton(FETCH_EN_DATA, res.data.results));
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
   }
   render() {
+    console.log("render homepage:", this.props.pageNumber);
     return (
       <div className="container-fluid">
         <h3 className="text-center title-admin">CONCORDANCE ADMIN</h3>
