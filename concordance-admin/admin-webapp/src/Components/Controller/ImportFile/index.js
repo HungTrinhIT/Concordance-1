@@ -29,7 +29,7 @@ class ImportFile extends Component {
     fd.append("filename", this.state.selectedFile);
     axios
       .post(
-        `http://127.0.0.1:8000/api/upload/?lang=${this.state.selectedLanguage}/`,
+        `http://127.0.0.1:8000/api/upload/?lang=${this.state.selectedLanguage}`,
         fd,
         {
           onUploadProgress: (progressEvent) => {
