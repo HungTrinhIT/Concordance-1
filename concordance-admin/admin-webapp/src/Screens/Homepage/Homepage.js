@@ -14,25 +14,26 @@ class Homepage extends Component {
     // Call API here(componentDidMount) to get the ViData and EngData, then those data will be stored in Redux store
     // After that, we will get ViData and EngData from store and pass those data to EngTable and ViTable
     // Get viData
-    // dataService
-    //   .fetchLanguageData_pagination(this.props.pageNumber, "vnData")
-    //   .then((res) => {
-    //     this.props.dispatch(createAciton(FETCH_VI_DATA, res.data.results));
-    //   })
-    //   .catch((err) => {
-    //     console.log(err.message);
-    //   });
-      this.props.dispatch(createAciton(FETCH_VI_DATA, ViData.results));
+    
+     dataService
+      .fetchLanguageData_pagination(this.props.pageNumber, "vnData")
+      .then((res) => {
+        this.props.dispatch(createAciton(FETCH_VI_DATA, res.data.results));
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+      // this.props.dispatch(createAciton(FETCH_VI_DATA, ViData.results));
     // Get enData
-    // dataService
-    //   .fetchLanguageData_pagination(this.props.pageNumber, "enData")
-    //   .then((res) => {
-    //     this.props.dispatch(createAciton(FETCH_EN_DATA, res.data.results));
-    //   })
-    //   .catch((err) => {
-    //     console.log(err.message);
-    //   });
-      this.props.dispatch(createAciton(FETCH_EN_DATA, EnData.results));
+     dataService
+      .fetchLanguageData_pagination(this.props.pageNumber, "enData")
+      .then((res) => {
+        this.props.dispatch(createAciton(FETCH_EN_DATA, res.data.results));
+      })
+      .catch((err) => {
+        console.log(err.message);
+      });
+      // this.props.dispatch(createAciton(FETCH_EN_DATA, EnData.results));
   }
   render() {
     return (
@@ -63,6 +64,7 @@ const mapStateToProps = (state) => {
     viData: state.data.viData,
     enData: state.data.enData,
     pageNumber: state.data.pageNumber,
+
   };
 };
 export default connect(mapStateToProps)(Homepage);
