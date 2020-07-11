@@ -1,0 +1,53 @@
+/* GLOBAL */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-size: 14px;
+}
+body {
+  font-family: "Open Sans", sans-serif;
+  color:black;
+}
+p {
+  margin-bottom: 0;
+}
+button:focus {
+  outline: none;
+}
+
+:root {
+  --bg-color-main:#032C2D;
+  --bg-color-1: #2b3e51;
+  --bg-color-2: #526170;
+  --bg-color-3: #563d7c;
+  --text-white: #ffffff;
+  --text-black: #000000;
+}
+
+/* width */
+::-webkit-scrollbar {
+  width: 10px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+input{
+  margin-right: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: transparent;
+}
+
+/* Handle on hover */
+table:hover ::-webkit-scrollbar-thumb:hover {
+  background: #2b3e51;
+}
+
+table:hover ::-webkit-scrollbar-thumb {
+  background: #526170;
+}

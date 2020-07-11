@@ -1,0 +1,22 @@
+/* Search controller */
+.btn-search {
+  border: none;
+  padding: 6px 16px;
+  background: #2b3e51;
+  color: #ffffff;
+  border-radius: 5px;
+}
+.btn-search:hover {
+  opacity: 0.9;
+}
+
+.content__title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.active {
+  background-color: #526170;
+  color: #ffffff;
+}

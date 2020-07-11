@@ -1,0 +1,35 @@
+/* CUSTOM table */
+.table-fixed {
+    width: 100%;
+    background-color: #f3f3f3;
+  }
+  
+  .table-content tbody {
+    height: 230px;
+    overflow-y: auto;
+    width: 100%;
+  }
+  
+  .table-content thead,
+  .table-content tbody,
+  .table-content tr,
+  .table-content td,
+  .table-content th {
+    display: block;
+  }
+  
+  .table-content tbody td {
+    float: left;
+  }
+  
+  .table-content thead tr th {
+    float: left;
+    background-color: #526170;
+    color: #ffffff;
+  }
+
+  .language-title {
+    font-weight: 900;
+    margin-bottom: 10px;
+    font-size: 1.2rem;
+  }

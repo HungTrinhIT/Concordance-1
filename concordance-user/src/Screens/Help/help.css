@@ -1,0 +1,10 @@
+select.typeOfTag{
+    display: block;
+    width: 50%!important;
+}
+
+.help__title{
+    font-size: 1.2rem;
+    font-weight: 900;
+    padding-top: 30px;
+}
