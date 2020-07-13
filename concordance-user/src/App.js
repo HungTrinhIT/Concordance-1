@@ -34,31 +34,6 @@ class App extends Component {
       });
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    if (this.props.pageNumber !== nextProps.pageNumber) {
-      dataService
-        .fetchData_pagination(nextProps.pageNumber, "vnsentence")
-        .then((res) => {
-          this.props.dispatch(createAction(FETCH_VI_DATA, res.data.results));
-        })
-        .catch((err) => {
-          console.log(err.message);
-        });
-
-      // Get enData
-      dataService
-        .fetchData_pagination(nextProps.pageNumber, "ensentence")
-        .then((res) => {
-          this.props.dispatch(createAction(FETCH_EN_DATA, res.data.results));
-        })
-        .catch((err) => {
-          console.log(err.message);
-        });
-      return true;
-    }
-    return false;
-  }
-
   render() {
     return (
       <BrowserRouter>
@@ -74,5 +49,9 @@ class App extends Component {
     );
   }
 }
-
+const mapStateToProps = (state) => {
+  return {
+    pageNumber: state.Controller.currentPage,
+  };
+};
 export default connect()(App);
