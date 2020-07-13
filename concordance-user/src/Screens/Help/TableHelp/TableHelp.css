@@ -1,32 +1,29 @@
 /* CUSTOM table */
 .table-fixed {
-    width: 100%;
-    background-color: #f3f3f3;
-  }
-  
-  .help-table tbody {
-    height: 500px;
-    overflow-y: auto;
-    width: 100%;
-  }
-  
-  .help-table thead,
-  .help-table tbody,
-  .help-table tr,
-  .help-table td,
-  .help-table th {
-    display: block;
-  }
-  
-  .help-table tbody td {
-    float: left;
-  }
-  
-  .help-table thead tr th {
-    float: left;
-    background-color: #526170;
-    color: #ffffff;
-  }
+  width: 100%;
+  background-color: #f3f3f3;
+}
 
+.help-table tbody {
+  height: 450px;
+  overflow-y: auto;
+  width: 100%;
+}
 
+.help-table thead,
+.help-table tbody,
+.help-table tr,
+.help-table td,
+.help-table th {
+  display: block;
+}
 
+.help-table tbody td {
+  float: left;
+}
+
+.help-table thead tr th {
+  float: left;
+  background-color: #526170;
+  color: #ffffff;
+}
