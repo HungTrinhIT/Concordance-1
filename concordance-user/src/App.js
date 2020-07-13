@@ -54,4 +54,4 @@ const mapStateToProps = (state) => {
     pageNumber: state.Controller.currentPage,
   };
 };
-export default connect()(App);
+export default connect(mapStateToProps)(App);
