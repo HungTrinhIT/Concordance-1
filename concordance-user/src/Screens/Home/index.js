@@ -10,6 +10,7 @@ import { FETCH_VI_DATA, FETCH_EN_DATA } from "../../Redux/Action/type";
 class Home extends Component {
   componentDidMount() {
     // FETCH Vietnamese sentences
+    console.log("didMount Home:",this.props.pageNumber);
     dataService
       .fetchData_pagination(this.props.pageNumber, "vnsentence")
       .then((response) => {
@@ -18,6 +19,7 @@ class Home extends Component {
       .catch((error) => {
         console.log(error.message);
       });
+
     // FETCH English sentences
     dataService
       .fetchData_pagination(this.props.pageNumber, "ensentence")
@@ -30,6 +32,7 @@ class Home extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
+    console.log("Update Home:", this.props.pageNumber, nextProps.pageNumber);
     if (this.props.pageNumber !== nextProps.pageNumber) {
       dataService
         .fetchData_pagination(nextProps.pageNumber, "vnsentence")

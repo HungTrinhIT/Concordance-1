@@ -6,7 +6,7 @@ import { createAction } from "../../Redux/Action";
 
 class Pagination extends Component {
   state = {
-    pageNumber: 1,
+    pageNumber: this.props.pageNumber,
   };
   handlePage = (value) => {
     let currentPageNumber = this.state.pageNumber;
@@ -51,4 +51,9 @@ class Pagination extends Component {
   }
 }
 
-export default connect()(Pagination);
+const mapStateToProps = (state) => {
+  return {
+    pageNumber: state.Controller.currentPage,
+  };
+};
+export default connect(mapStateToProps)(Pagination);
