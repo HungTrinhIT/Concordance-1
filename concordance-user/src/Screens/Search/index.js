@@ -7,9 +7,24 @@ import { connect } from "react-redux";
 import "./Search.css";
 import SearchController from "../../Components/SearchController";
 class Search extends Component {
-  // Fetch Data from Backend in here
-  componentDidMount() {}
   render() {
+    let tables = [];
+    if (this.props.language === "english") {
+      tables.push(
+        <Table languageTitle="English" data={this.props.data.source} />
+      );
+      tables.push(
+        <Table languageTitle="Vietnamese" data={this.props.data.target} />
+      );
+    } else {
+      tables.push(
+        <Table languageTitle="Vietnamese" data={this.props.data.target} />
+      );
+      tables.push(
+        <Table languageTitle="English" data={this.props.data.source} />
+      );
+    }
+
     return (
       <Fragment>
         <div className="main">
@@ -23,8 +38,7 @@ class Search extends Component {
                 <SearchController />
               </div>
               <Linebreak />
-              <Table />
-              <Table />
+              {tables}
             </div>
           </div>
         </div>
@@ -35,6 +49,9 @@ class Search extends Component {
 
 // Get data from store
 const mapStateToProps = (state) => {
-  return {};
+  return {
+    language: state.Controller.language,
+    data: state.Data.searchData || { source: [], target: [] },
+  };
 };
 export default connect(mapStateToProps)(Search);

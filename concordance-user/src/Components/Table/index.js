@@ -1,14 +1,31 @@
-import React, { Component } from 'react'
-import './Table.css'
-import {connect} from 'react-redux';
+import React, { Component } from "react";
+import "./Table.css";
+import { connect } from "react-redux";
 class Table extends Component {
-    render() {
-        return (
-            <div className="source-languege">
+  render() {
+    let tableContent = this.props.data.map((item) => {
+      return (
+        <tr key={item.sentence_id}>
+          <td className="text-right col-5">
+            {item.left.length < 50 ? item.left : item.left.slice(0, 50) + "..."}
+          </td>
+          <td className="text-center text-danger col-2">
+            {item.key.length < 10 ? item.key : item.key.slice(0, 10) + "..."}
+          </td>
+          <td className="text-left col-5">
+            {item.right.length < 50
+              ? item.right
+              : item.right.slice(0, 50) + "..."}
+          </td>
+        </tr>
+      );
+    });
+    return (
+      <div className="source-languege">
         {/* Title language */}
         <p className="language-title">
           <i className="fa fa-language mr-2" />
-          English
+          {this.props.languageTitle}
         </p>
         {/* Table content */}
         <div className="table-content">
@@ -20,62 +37,12 @@ class Table extends Component {
                 <th className="col-5">Right</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td className="text-right col-5">He managed to say</td>
-                <td className="text-center text-danger col-2">hello</td>
-                <td className="text-left col-5">
-                  to 12 people in five seconds without...
-                </td>
-              </tr>
-              <tr>
-                <td className="text-right col-5">He managed to say</td>
-                <td className="text-center text-danger col-2">hello</td>
-                <td className="text-left col-5">
-                  to 12 people in five seconds without...
-                </td>
-              </tr>
-              <tr>
-                <td className="text-right col-5">He managed to say</td>
-                <td className="text-center text-danger col-2">hello</td>
-                <td className="text-left col-5">
-                  to 12 people in five seconds without...
-                </td>
-              </tr>
-              <tr>
-                <td className="text-right col-5">He managed to say</td>
-                <td className="text-center text-danger col-2">hello</td>
-                <td className="text-left col-5">
-                  to 12 people in five seconds without...
-                </td>
-              </tr>
-              <tr>
-                <td className="text-right col-5">He managed to say</td>
-                <td className="text-center text-danger col-2">hello</td>
-                <td className="text-left col-5">
-                  to 12 people in five seconds without...
-                </td>
-              </tr>
-              <tr>
-                <td className="text-right col-5">He managed to say</td>
-                <td className="text-center text-danger col-2">hello</td>
-                <td className="text-left col-5">
-                  to 12 people in five seconds without...
-                </td>
-              </tr>
-              <tr>
-                <td className="text-right col-5">He managed to say</td>
-                <td className="text-center text-danger col-2">hello</td>
-                <td className="text-left col-5">
-                  to 12 people in five seconds without...
-                </td>
-              </tr>
-            </tbody>
+            <tbody>{tableContent}</tbody>
           </table>
         </div>
       </div>
-        )
-    }
+    );
+  }
 }
 
 export default connect()(Table);

@@ -3,14 +3,21 @@ import "./tag.css";
 import { connect } from "react-redux";
 class Tag extends Component {
   state = {
-    typeTag: "pos",
-    typeTagDetail:""
+    typeTag: "",
+    typeTagDetail: "",
   };
-
   onChangleHandler = (event) => {
-    this.setState({
-      [event.target.name]: event.target.value,
-    });
+    this.setState(
+      {
+        [event.target.name]: event.target.value,
+      },
+      () => {
+        this.props.handleTag({
+          key: this.state.typeTag,
+          value: this.state.typeTagDetail,
+        });
+      }
+    );
   };
 
   render() {
@@ -19,21 +26,24 @@ class Tag extends Component {
       this.props.language.charAt(0) +
       this.state.typeTag.charAt(0).toUpperCase() +
       this.state.typeTag.slice(1, this.state.typeTag.length);
-    let tagDetail = this.props.tags[`${typeTag}`].map((item) => {
-      return item.tag;
-    });
-
+    let tagDetail = null;
+    if (this.state.typeTag !== "") {
+      tagDetail = this.props.tags[`${typeTag}`].map((item) => {
+        return item.tag;
+      });
+    }
     // Select>options
-    options = tagDetail.map((item, index) => {
-      return (
-        <option value={item} key={index}>
-          {item}
-        </option>
-      );
-    });
-
+    if (tagDetail !== null) {
+      options = tagDetail.map((item, index) => {
+        return (
+          <option value={item} key={index}>
+            {item}
+          </option>
+        );
+      });
+    }
     return (
-      <div className="col-3 tag d-flex justify-content-start algin-items-center">
+      <div className="col-5 tag d-flex justify-content-start algin-items-center">
         <div>
           <p className="content__title">Tag</p>
           <div className="tag__choosen d-flex justify-content- algin-items-center">
@@ -63,7 +73,6 @@ class Tag extends Component {
                 NER
               </label>
             </div>
-            
           </div>
         </div>
         <div className="tag__content">
@@ -72,8 +81,10 @@ class Tag extends Component {
             name="typeTagDetail"
             onChange={this.onChangleHandler}
             value={this.state.typeTagDetail}
-
           >
+            <option defaultValue="Choose your option">
+              Choose your option
+            </option>
             {options}
           </select>
         </div>

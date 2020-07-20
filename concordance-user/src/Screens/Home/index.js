@@ -59,7 +59,6 @@ const data = [
 
 class Home extends Component {
   shouldComponentUpdate(nextProps, nextState) {
-    console.log(this.props.pageNumber, nextProps.pageNumber);
     if (this.props.pageNumber !== nextProps.pageNumber) {
       dataService
         .fetchData_pagination(nextProps.pageNumber, "vnsentence")
@@ -105,8 +104,8 @@ const mapStateToProps = (state) => {
   return {
     languageType: state.Controller.language,
     pageNumber: state.Controller.currentPage,
-    viData: state.Data.viData,
-    enData: state.Data.enData,
+    viData: state.Data.initData.viData,
+    enData: state.Data.initData.enData,
   };
 };
 

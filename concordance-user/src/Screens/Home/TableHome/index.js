@@ -3,7 +3,7 @@ import "./TableHome.css";
 
 export default class TableHome extends Component {
   handleActive = (id) => {
-    console.log("sentence id:",id);
+    console.log("sentence id:", id);
   };
   render() {
     let { data } = this.props;
@@ -23,7 +23,7 @@ export default class TableHome extends Component {
     return (
       <div className="table__home">
         <div className="table-content">
-          <table className="table table-fixed">
+          <table className="table table-fixedcd">
             <thead>
               <tr>
                 <th className="col-3">ID</th>
