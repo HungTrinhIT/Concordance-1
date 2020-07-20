@@ -2,10 +2,18 @@ import React, { Component } from "react";
 import "./Table.css";
 import { connect } from "react-redux";
 class Table extends Component {
+  handleActive = (id) => {
+    console.log(this.props.languageTitle, id);
+  };
   render() {
     let tableContent = this.props.data.map((item) => {
       return (
-        <tr key={item.sentence_id}>
+        <tr
+          key={item.sentence_id}
+          onClick={() => {
+            this.handleActive(item.sentence_id);
+          }}
+        >
           <td className="text-right col-5">
             {item.left.length < 50 ? item.left : item.left.slice(0, 50) + "..."}
           </td>

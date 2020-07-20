@@ -3,11 +3,13 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-size: 14px;
 }
 body {
-  font-family: "Open Sans", sans-serif;
-  color:black;
+  margin-bottom: 0;
+  font-family: Hknova, Arial, sans-serif;
+  font-size: 16px;
+  font-weight: 300;
+  color: black;
 }
 p {
   margin-bottom: 0;
@@ -17,12 +19,13 @@ button:focus {
 }
 
 :root {
-  --bg-color-main:#032C2D;
+  --bg-color-main: #003;
   --bg-color-1: #2b3e51;
   --bg-color-2: #526170;
   --bg-color-3: #563d7c;
   --text-white: #ffffff;
   --text-black: #000000;
+  --text-1: #0f223d;
 }
 
 /* width */
@@ -34,7 +37,7 @@ button:focus {
 ::-webkit-scrollbar-track {
   background: #f1f1f1;
 }
-input{
+input {
   margin-right: 10px;
 }
 

@@ -6,8 +6,9 @@ export default function Header() {
     <header className="header">
       <nav className="navbar navbar-expand-lg  fixed-top ">
         {/* Header Logo */}
-        <Link className="navbar-brand logo" to="/">
-          CONCORDANCE
+        <Link className="navbar-brand logo d-flex align-items-center" to="/">
+          <img src="/images/logo1.jpg" className="logo-img mr-3" alt="" />
+          <span>CONCORDANCE</span>
         </Link>
         {/* End header logo */}
 
@@ -50,7 +51,7 @@ export default function Header() {
             </li>
             <li className="nav-item">
               <Link className="nav-link" to="/aboutus">
-                About us
+                Contact
               </Link>
             </li>
           </ul>

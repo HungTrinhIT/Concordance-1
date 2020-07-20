@@ -1,12 +1,7 @@
 import React, { Component } from "react";
 import "./aboutus.css";
 import CardInfo from "./CardInfo";
-var sectionStyle = {
-  height: "100vh",
-  backgroundSize: "cover",
-  backgroundPosition: "center",
-  backgroundImage: `url(${"./images/background_aboutus.jpg"})`,
-};
+
 
 const infoDevs = [
   {

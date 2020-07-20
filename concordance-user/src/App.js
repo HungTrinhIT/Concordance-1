@@ -11,6 +11,7 @@ import { connect } from "react-redux";
 import { createAction } from "./Redux/Action";
 import { FETCH_VI_DATA, FETCH_EN_DATA } from "./Redux/Action/type";
 import { dataService } from "./Services";
+import Footer from "./Layouts/Footer";
 class App extends Component {
   componentDidMount() {
     // FETCH Vietnamese sentences
@@ -45,6 +46,7 @@ class App extends Component {
           <Route path="/search" component={Search} />
           <Route path="/" component={Home} />
         </Switch>
+        <Footer />
       </BrowserRouter>
     );
   }

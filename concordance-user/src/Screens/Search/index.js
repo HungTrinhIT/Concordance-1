@@ -1,5 +1,4 @@
 import React, { Component, Fragment } from "react";
-import Sidebar from "../../Components/Sidebar";
 import ShowLanguage from "../../Components/Language";
 import Linebreak from "../../Components/Linebreak";
 import Table from "../../Components/Table";
@@ -11,26 +10,41 @@ class Search extends Component {
     let tables = [];
     if (this.props.language === "english") {
       tables.push(
-        <Table languageTitle="English" data={this.props.data.source} />
+        <Table
+          languageTitle="English"
+          key="source"
+          data={this.props.data.source}
+        />
       );
       tables.push(
-        <Table languageTitle="Vietnamese" data={this.props.data.target} />
+        <Table
+          languageTitle="Vietnamese"
+          key="target"
+          data={this.props.data.target}
+        />
       );
     } else {
       tables.push(
-        <Table languageTitle="Vietnamese" data={this.props.data.target} />
+        <Table
+          languageTitle="Vietnamese"
+          key="source"
+          data={this.props.data.target}
+        />
       );
       tables.push(
-        <Table languageTitle="English" data={this.props.data.source} />
+        <Table
+          languageTitle="English"
+          key="target"
+          data={this.props.data.source}
+        />
       );
     }
 
     return (
-      <Fragment>
-        <div className="main">
+      <div>
+        <div className="main container">
           <div className="row m-0">
-            <Sidebar />
-            <div className="col-10 mt-2 content">
+            <div className="col-12 mt-2 content">
               <div className="row">
                 {/* Language to search */}
                 <ShowLanguage />
@@ -38,11 +52,11 @@ class Search extends Component {
                 <SearchController />
               </div>
               <Linebreak />
-              {tables}
+              <div className="container">{tables}</div>
             </div>
           </div>
         </div>
-      </Fragment>
+      </div>
     );
   }
 }

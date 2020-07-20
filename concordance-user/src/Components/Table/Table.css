@@ -5,7 +5,7 @@
 }
 
 .table-content tbody {
-  height: 250px;
+  height: 187px;
   overflow-y: auto;
   width: 100%;
 }
@@ -15,9 +15,11 @@
 .table-content tr,
 .table-content td,
 .table-content th {
-  display: block;
+  display: block; 
 }
-
+.table-content td,td{
+  padding: 6px;
+}
 .table-content tbody td {
   float: left;
   cursor: pointer;
@@ -27,7 +29,7 @@
 }
 .table-content thead tr th {
   float: left;
-  background-color: #526170;
+  background-color: var(--bg-color-1);
   color: #ffffff;
 }
 

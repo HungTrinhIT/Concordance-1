@@ -43,8 +43,8 @@ class Tag extends Component {
       });
     }
     return (
-      <div className="col-5 tag d-flex justify-content-start algin-items-center">
-        <div>
+      <div className="tag d-flex justify-content-start algin-items-center">
+        <div className="d-block">
           <p className="content__title">Tag</p>
           <div className="tag__choosen d-flex justify-content- algin-items-center">
             <div className="form-check mr-3">
@@ -73,20 +73,20 @@ class Tag extends Component {
                 NER
               </label>
             </div>
+            <div className="tag__content ml-3">
+              <select
+                className="tag__select"
+                name="typeTagDetail"
+                onChange={this.onChangleHandler}
+                value={this.state.typeTagDetail}
+              >
+                <option defaultValue="Choose your option">
+                  Choose your option
+                </option>
+                {options}
+              </select>
+            </div>
           </div>
-        </div>
-        <div className="tag__content">
-          <select
-            className="tag__select"
-            name="typeTagDetail"
-            onChange={this.onChangleHandler}
-            value={this.state.typeTagDetail}
-          >
-            <option defaultValue="Choose your option">
-              Choose your option
-            </option>
-            {options}
-          </select>
         </div>
       </div>
     );

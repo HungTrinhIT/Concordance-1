@@ -952,7 +952,7 @@ class SearchController extends Component {
   handleTag = ({ key, value }) => {
     let newPos = null,
       newNer = null;
-    if (key == "pos") {
+    if (key === "pos") {
       newPos = value;
       newNer = "";
     } else {
@@ -995,10 +995,10 @@ class SearchController extends Component {
   };
   render() {
     return (
-      <div className="col-9 seach__controller">
+      <div className="col-10 seach__controller">
         <form className="row" onSubmit={this.handleOnsubmit}>
           <div className="col-5">
-            <div className="serach__word">
+            <div className="serach__word ml-4">
               <div className="form-group">
                 <label htmlFor="searchKey" className="content__title">
                   Key search
@@ -1015,10 +1015,10 @@ class SearchController extends Component {
               </div>
             </div>
           </div>
-          <div className="search__tag">
+          <div className="search__tag col-5 ">
             <Tag handleTag={this.handleTag} />
           </div>
-          <div className="col-2 ml-auto">
+          <div className="col-2 m-auto">
             <div className="search__button">
               <button type="submit" className="btn-search">
                 SEARCH
