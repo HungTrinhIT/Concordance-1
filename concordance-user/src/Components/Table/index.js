@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "./Table.css";
 import { connect } from "react-redux";
 class Table extends Component {
+  
   render() {
     let tableContent = this.props.data.map((item) => {
       let activeClass =
@@ -13,6 +14,7 @@ class Table extends Component {
             this.props.handleRowSelected(item.sentence_id);
           }}
           className={activeClass}
+          onDoubleClick={this.props.openModalHandler}
         >
           <td className="text-right col-5">
             {item.left.length < 50 ? item.left : item.left.slice(0, 50) + "..."}

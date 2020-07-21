@@ -5,14 +5,22 @@ import Table from "../../Components/Table";
 import { connect } from "react-redux";
 import "./Search.css";
 import SearchController from "../../Components/SearchController";
+import Modal from "../../Components/Modal";
+import Backdrop from "../../Components/Backdrop";
 class Search extends Component {
   state = {
     rowSelected: null,
+    modalToggle: false,
   };
-
   handleRowSelected = (id) => {
     this.setState({
       rowSelected: id,
+    });
+  };
+
+  openModalHandler = () => {
+    this.setState({
+      modalToggle: !this.state.modalToggle,
     });
   };
   render() {
@@ -25,6 +33,7 @@ class Search extends Component {
           data={this.props.data.source}
           handleRowSelected={this.handleRowSelected}
           selectedID={this.state.rowSelected}
+          openModalHandler={this.openModalHandler}
         />
       );
       tables.push(
@@ -34,6 +43,7 @@ class Search extends Component {
           data={this.props.data.target}
           handleRowSelected={this.handleRowSelected}
           selectedID={this.state.rowSelected}
+          openModalHandler={this.openModalHandler}
         />
       );
     } else {
@@ -44,6 +54,7 @@ class Search extends Component {
           data={this.props.data.target}
           handleRowSelected={this.handleRowSelected}
           selectedID={this.state.rowSelected}
+          openModalHandler={this.openModalHandler}
         />
       );
       tables.push(
@@ -53,26 +64,23 @@ class Search extends Component {
           data={this.props.data.source}
           handleRowSelected={this.handleRowSelected}
           selectedID={this.state.rowSelected}
+          openModalHandler={this.openModalHandler}
         />
       );
     }
 
     return (
-      <div>
-        <div className="main container">
-          <div className="row m-0">
-            <div className="col-12 mt-2 content">
-              <div className="row">
-                {/* Language to search */}
-                <ShowLanguage />
-                {/* Search type */}
-                <SearchController />
-              </div>
-              <Linebreak />
-              <div className="container">{tables}</div>
-            </div>
-          </div>
+      <div className="container">
+        <div className="row">
+          <ShowLanguage />
+          <SearchController />
         </div>
+        <Linebreak />
+        <div>{tables}</div>
+        <Modal show={this.state.modalToggle} modalClosed={this.openModalHandler}>
+           <p className="modal-title">Modal title</p>
+        </Modal>
+        <Backdrop show={this.state.modalToggle} clicked={this.openModalHandler} />
       </div>
     );
   }

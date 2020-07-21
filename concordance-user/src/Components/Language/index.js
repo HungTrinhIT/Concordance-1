@@ -19,7 +19,7 @@ class ShowLanguage extends Component {
   };
   render() {
     return (
-      <div className="col-2 language">
+      <div className="col-2 language mt-3">
         <p className="content__title">Source language</p>
         <div className="language__choosen d-flex justify-content-start align-items-center">
           <div className="form-check mr-3">

@@ -983,15 +983,15 @@ class SearchController extends Component {
         key: "ner",
         value: this.state.tag.ner,
       };
-    // this.props.dispatch(createAction(FETCH_SEARCH_DATA, DATA_TEST));
-    dataService
-      .fetchData_Search(this.state.searchValue, lang, optional)
-      .then((res) => {
-        this.props.dispatch(createAction(FETCH_SEARCH_DATA, res.data));
-      })
-      .catch((err) => {
-        alert("Fail connection! Please try again!");
-      });
+    this.props.dispatch(createAction(FETCH_SEARCH_DATA, DATA_TEST));
+    // dataService
+    //   .fetchData_Search(this.state.searchValue, lang, optional)
+    //   .then((res) => {
+    //     this.props.dispatch(createAction(FETCH_SEARCH_DATA, res.data));
+    //   })
+    //   .catch((err) => {
+    //     alert("Fail connection! Please try again!");
+    //   });
     this.setState({
       searchValue: "",
       tag: {
@@ -1002,7 +1002,7 @@ class SearchController extends Component {
   };
   render() {
     return (
-      <div className="col-10 seach__controller">
+      <div className="col-10 seach__controller mt-3">
         <form className="row" onSubmit={this.handleOnsubmit}>
           <div className="col-5">
             <div className="serach__word ml-4">
