@@ -6,6 +6,15 @@ import { connect } from "react-redux";
 import "./Search.css";
 import SearchController from "../../Components/SearchController";
 class Search extends Component {
+  state = {
+    rowSelected: null,
+  };
+
+  handleRowSelected = (id) => {
+    this.setState({
+      rowSelected: id,
+    });
+  };
   render() {
     let tables = [];
     if (this.props.language === "english") {
@@ -14,6 +23,8 @@ class Search extends Component {
           languageTitle="English"
           key="source"
           data={this.props.data.source}
+          handleRowSelected={this.handleRowSelected}
+          selectedID={this.state.rowSelected}
         />
       );
       tables.push(
@@ -21,6 +32,8 @@ class Search extends Component {
           languageTitle="Vietnamese"
           key="target"
           data={this.props.data.target}
+          handleRowSelected={this.handleRowSelected}
+          selectedID={this.state.rowSelected}
         />
       );
     } else {
@@ -29,6 +42,8 @@ class Search extends Component {
           languageTitle="Vietnamese"
           key="source"
           data={this.props.data.target}
+          handleRowSelected={this.handleRowSelected}
+          selectedID={this.state.rowSelected}
         />
       );
       tables.push(
@@ -36,6 +51,8 @@ class Search extends Component {
           languageTitle="English"
           key="target"
           data={this.props.data.source}
+          handleRowSelected={this.handleRowSelected}
+          selectedID={this.state.rowSelected}
         />
       );
     }

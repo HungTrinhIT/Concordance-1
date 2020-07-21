@@ -1,7 +1,6 @@
 /* CUSTOM table */
 .table-fixed {
   width: 100%;
-  background-color: #f3f3f3;
 }
 
 .table-content tbody {
@@ -15,23 +14,29 @@
 .table-content tr,
 .table-content td,
 .table-content th {
-  display: block; 
+  display: block;
 }
-.table-content td,td{
+.table-content td,
+td {
   padding: 6px;
 }
 .table-content tbody td {
   float: left;
   cursor: pointer;
 }
-.table-content tbody td:hover{
-  opacity: 0.6;
+.table-content tbody td:hover {
+  opacity: 0, 8;
 }
-.table-content thead tr th {
+.table-content thead th {
   float: left;
   background-color: var(--bg-color-1);
   color: #ffffff;
 }
+/* .table-content tbody .active-row {
+  display: ruby;
+  background-color: var(--bg-color-2);
+  color: var(--text-white);
+} */
 
 .language-title {
   font-weight: 900;
