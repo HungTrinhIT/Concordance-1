@@ -9,7 +9,6 @@ class DataService {
     });
   }
   fetchData_Search(keySearch, lang, { key, value }) {
-    console.log(key, value);
     let getSearchUrl = null;
     if (keySearch !== "" && !value)
       getSearchUrl =

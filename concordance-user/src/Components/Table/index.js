@@ -5,9 +5,7 @@ class Table extends Component {
   render() {
     let tableContent = this.props.data.map((item) => {
       let activeClass =
-        this.props.selectedID === item.sentence_id
-          ? "text-info"
-          : null;
+        this.props.selectedID === item.sentence_id ? "text-info" : null;
       return (
         <tr
           key={item.sentence_id}

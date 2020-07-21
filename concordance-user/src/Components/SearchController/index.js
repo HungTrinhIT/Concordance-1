@@ -1,4 +1,4 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import "./SearchController.css";
 import { connect } from "react-redux";
 import Tag from "./Tag";
@@ -983,15 +983,22 @@ class SearchController extends Component {
         key: "ner",
         value: this.state.tag.ner,
       };
-    this.props.dispatch(createAction(FETCH_SEARCH_DATA, DATA_TEST));
-    // dataService
-    //   .fetchData_Search(this.state.searchValue, lang, optional)
-    //   .then((res) => {
-    //     this.props.dispatch(createAction(FETCH_SEARCH_DATA, res.data));
-    //   })
-    //   .catch((err) => {
-    //     alert("Fail connection! Please try again!");
-    //   });
+    // this.props.dispatch(createAction(FETCH_SEARCH_DATA, DATA_TEST));
+    dataService
+      .fetchData_Search(this.state.searchValue, lang, optional)
+      .then((res) => {
+        this.props.dispatch(createAction(FETCH_SEARCH_DATA, res.data));
+      })
+      .catch((err) => {
+        alert("Fail connection! Please try again!");
+      });
+    this.setState({
+      searchValue: "",
+      tag: {
+        pos: "",
+        ner: "",
+      },
+    });
   };
   render() {
     return (
