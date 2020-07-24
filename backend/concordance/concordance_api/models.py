@@ -28,6 +28,15 @@ class Endata(models.Model):
         unique_together = (('lang', 'sentence_id', 'word_id'),)
 
 
+class Ensentence(models.Model):
+    sentence_id = models.CharField(primary_key=True, max_length=6)
+    sentence = models.CharField(max_length=500)
+
+    class Meta:
+        managed = False
+        db_table = 'EnSentence'
+
+
 class Vndata(models.Model):
     lang = models.CharField(primary_key=True, max_length=2)
     sentence_id = models.CharField(max_length=6)
@@ -45,4 +54,23 @@ class Vndata(models.Model):
     class Meta:
         managed = False
         db_table = 'VnData'
-        unique_together = (('lang', 'sentence_id', 'word_id'),)
+        unique_together = (('lang', 'sentence_id', 'word_id'),) 
+
+
+class Vnsentence(models.Model):
+    sentence_id = models.CharField(primary_key=True, max_length=6)
+    sentence = models.CharField(max_length=500)
+
+    class Meta:
+        managed = False
+        db_table = 'VnSentence'
+
+
+class DjangoMigrations(models.Model):
+    app = models.CharField(max_length=255)
+    name = models.CharField(max_length=255)
+    applied = models.DateTimeField()
+
+    class Meta:
+        managed = False
+        db_table = 'django_migrations' 
