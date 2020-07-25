@@ -59,6 +59,7 @@ import { FETCH_EN_DATA, FETCH_VI_DATA } from "../../Redux/Action/type";
 
 class Home extends Component {
   shouldComponentUpdate(nextProps, nextState) {
+    console.log(this.props.pageNumber, nextProps.pageNumber);
     if (this.props.pageNumber !== nextProps.pageNumber) {
       dataService
         .fetchData_pagination(nextProps.pageNumber, "vnsentence")
@@ -78,9 +79,8 @@ class Home extends Component {
         .catch((err) => {
           console.log(err.message);
         });
-      return true;
     }
-    return false;
+    return true;
   }
 
   render() {

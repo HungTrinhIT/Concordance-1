@@ -161,7 +161,6 @@ class Table extends Component {
       .catch((err) => {
         alert(err.message);
       });
-    
   };
   render() {
     let tableContent = this.props.data.map((item) => {
