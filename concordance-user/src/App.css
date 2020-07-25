@@ -46,11 +46,6 @@ input {
   background: transparent;
 }
 
-/* Handle on hover */
-table:hover ::-webkit-scrollbar-thumb:hover {
-  background: #2b3e51;
-}
-
-table:hover ::-webkit-scrollbar-thumb {
+::-webkit-scrollbar-thumb {
   background: #526170;
 }

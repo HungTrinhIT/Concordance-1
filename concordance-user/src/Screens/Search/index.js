@@ -7,6 +7,7 @@ import "./Search.css";
 import SearchController from "../../Components/SearchController";
 import Modal from "../../Components/Modal";
 import Backdrop from "../../Components/Backdrop";
+
 class Search extends Component {
   state = {
     rowSelected: null,
@@ -23,7 +24,28 @@ class Search extends Component {
       modalToggle: !this.state.modalToggle,
     });
   };
+
   render() {
+    let renderSource = null,
+      renderTarget = null;
+    if (this.props.detailSentence !== null) {
+      renderSource = this.props.detailSentence.source.map((item, index) => {
+        return (
+          <div className="word-item mr-5" key={index}>
+            <p className="mb-2">{item[7]}</p>
+            <p>{item[3]}</p>
+          </div>
+        );
+      });
+      renderTarget = this.props.detailSentence.target.map((item, index) => {
+        return (
+          <div className="word-item mr-5" key={index}>
+            <p>{item[3]}</p>
+            <p className="mt-1">{item[7]}</p>
+          </div>
+        );
+      });
+    }
     let tables = [];
     if (this.props.language === "english") {
       tables.push(
@@ -77,10 +99,46 @@ class Search extends Component {
         </div>
         <Linebreak />
         <div>{tables}</div>
-        <Modal show={this.state.modalToggle} modalClosed={this.openModalHandler}>
-           <p className="modal-title">Modal title</p>
+        <Modal
+          show={this.state.modalToggle}
+          modalClosed={this.openModalHandler}
+        >
+          <div className="myModal-top">
+            <p className="modal-title">Show Alignment</p>
+            <i className="fa fa-times" onClick={this.openModalHandler}></i>
+          </div>
+          <div className="myModal-content">
+            <div className="modal-content__left">
+              <div className="modal-content__item-left mt-2">
+                <p className="mb-2">POS</p>
+                <p className="source-title">
+                  {this.props.language === "english" ? "English" : "Vietnamese"}
+                </p>
+              </div>
+              <div className="modal-content__item-left">
+                <p className="source-title">
+                  {this.props.language !== "english" ? "English" : "Vietnamese"}
+                </p>
+                <p className="mt-2 mb-2">POS</p>
+              </div>
+            </div>
+            <div className="modal-content__right">
+              <div className="modal-content__item-right d-flex">
+                {renderSource}
+              </div>
+              <div className="modal-content__item-right d-flex">
+                {renderTarget}
+              </div>
+            </div>
+          </div>
+          <div className="myModal-footer d-flex justify-content-end">
+            <button onClick={this.openModalHandler}>CLOSE</button>
+          </div>
         </Modal>
-        <Backdrop show={this.state.modalToggle} clicked={this.openModalHandler} />
+        <Backdrop
+          show={this.state.modalToggle}
+          clicked={this.openModalHandler}
+        />
       </div>
     );
   }
@@ -91,6 +149,7 @@ const mapStateToProps = (state) => {
   return {
     language: state.Controller.language,
     data: state.Data.searchData || { source: [], target: [] },
+    detailSentence: state.Data.detailSentence,
   };
 };
 export default connect(mapStateToProps)(Search);

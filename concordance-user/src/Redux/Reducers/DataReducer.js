@@ -2,6 +2,7 @@ import {
   FETCH_VI_DATA,
   FETCH_EN_DATA,
   FETCH_SEARCH_DATA,
+  FETCH_DETAIL_SENTENCE,
 } from "../Action/type";
 
 let initialState = {
@@ -10,6 +11,7 @@ let initialState = {
     enData: [],
   },
   searchData: null,
+  detailSentence: null,
 };
 
 const DataReducer = (state = initialState, action) => {
@@ -22,6 +24,9 @@ const DataReducer = (state = initialState, action) => {
       return { ...state };
     case FETCH_SEARCH_DATA:
       state.searchData = action.payload;
+      return { ...state };
+    case FETCH_DETAIL_SENTENCE:
+      state.detailSentence = action.payload;
       return { ...state };
     default:
       return state;

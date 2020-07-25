@@ -1,6 +1,5 @@
-import React, { Fragment } from "react";
+import React from "react";
 import "./modal.css";
-import Backdrop from "../Backdrop";
 const Modal = (props) => {
   return (
     <div

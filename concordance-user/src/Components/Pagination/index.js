@@ -27,6 +27,13 @@ class Pagination extends Component {
       }
     );
   };
+  handleOnChange = (e) => {
+    this.setState({ pageNumber: e.target.value }, () => {
+      this.props.dispatch(
+        createAction(UPDATE_PAGE_NUMBER, this.state.pageNumber)
+      );
+    });
+  };
   render() {
     let clickHandler =
       this.state.pageNumber === 1 ? null : () => this.handlePage(-1);

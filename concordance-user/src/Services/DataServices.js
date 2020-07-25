@@ -29,6 +29,15 @@ class DataService {
       url: getSearchUrl,
     });
   }
+  fetchData_SentenceDetail = (id, lang) => {
+    let urlSentenceDetail =
+      this.baseURL + "/detail/?id=" + `${id}` + "&lang=" + `${lang}`;
+    console.log(urlSentenceDetail);
+    return axios({
+      method: "GET",
+      url: urlSentenceDetail,
+    });
+  };
 }
 
 export default DataService;

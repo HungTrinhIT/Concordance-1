@@ -34,8 +34,11 @@ class App extends Component {
         console.log(error.message);
       });
   }
-
+ 
   render() {
+    window.addEventListener("scroll",()=>{
+      console.log("scroll");
+    })
     return (
       <BrowserRouter>
         <Header />
