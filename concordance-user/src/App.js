@@ -12,6 +12,56 @@ import { createAction } from "./Redux/Action";
 import { FETCH_VI_DATA, FETCH_EN_DATA } from "./Redux/Action/type";
 import { dataService } from "./Services";
 import Footer from "./Layouts/Footer";
+
+const data = [
+  {
+    sentence_id: "000001",
+    sentence: "' Nếu điều đó giữ được hạnh_phúc gia_đình thì vẫn còn hời đấy !",
+  },
+  {
+    sentence_id: "000002",
+    sentence:
+      "' Renbim ' có nghĩa là ' nhân_dân ' và ' bi ' có nghĩa là ' tiền_tệ ' hoặc ' tiền ' .",
+  },
+  {
+    sentence_id: "000003",
+    sentence:
+      'Xin cám_ơn ông đã cho chúng_tôi xem bộ sưu_tập hoạ_phẩm của ông , " Đó là đặc_ân của tôi " .',
+  },
+  {
+    sentence_id: "000004",
+    sentence: "' Nếu điều đó giữ được hạnh_phúc gia_đình thì vẫn còn hời đấy !",
+  },
+  {
+    sentence_id: "000005",
+    sentence:
+      "' Renbim ' có nghĩa là ' nhân_dân ' và ' bi ' có nghĩa là ' tiền_tệ ' hoặc ' tiền ' .",
+  },
+  {
+    sentence_id: "000006",
+    sentence:
+      'Xin cám_ơn ông đã cho chúng_tôi xem bộ sưu_tập hoạ_phẩm của ông , " Đó là đặc_ân của tôi " .',
+  },
+  {
+    sentence_id: "000007",
+    sentence: "' Nếu điều đó giữ được hạnh_phúc gia_đình thì vẫn còn hời đấy !",
+  },
+  {
+    sentence_id: "000008",
+    sentence:
+      "' Renbim ' có nghĩa là ' nhân_dân ' và ' bi ' có nghĩa là ' tiền_tệ ' hoặc ' tiền ' .",
+  },
+  {
+    sentence_id: "000009",
+    sentence:
+      'Xin cám_ơn ông đã cho chúng_tôi xem bộ sưu_tập hoạ_phẩm của ông , " Đó là đặc_ân của tôi " .',
+  },
+  {
+    sentence_id: "0000010",
+    sentence:
+      'Xin cám_ơn ông đã cho chúng_tôi xem bộ sưu_tập hoạ_phẩm của ông , " Đó là đặc_ân của tôi " .',
+  },
+];
 class App extends Component {
   componentDidMount() {
     // FETCH Vietnamese sentences
@@ -23,7 +73,6 @@ class App extends Component {
       .catch((error) => {
         console.log(error.message);
       });
-
     // FETCH English sentences
     dataService
       .fetchData_pagination(this.props.pageNumber, "ensentence")
@@ -36,9 +85,6 @@ class App extends Component {
   }
 
   render() {
-    window.addEventListener("scroll", () => {
-      console.log("scroll");
-    });
     return (
       <BrowserRouter>
         <Header />

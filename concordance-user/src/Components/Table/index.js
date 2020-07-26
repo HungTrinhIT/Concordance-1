@@ -151,8 +151,6 @@ import { dataService } from "../../Services";
 // };
 class Table extends Component {
   handleSentenceDetail = (id) => {
-    // this.props.dispatch(createAction(FETCH_DETAIL_SENTENCE, dataAlignment));
-    // this.props.openModalHandler();
     let lang = this.props.language === "english" ? "en" : "vn";
     dataService
       .fetchData_SentenceDetail(id, lang)
