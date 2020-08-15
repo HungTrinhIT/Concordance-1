@@ -3,6 +3,7 @@ import { LANGUAGE_TYPE, UPDATE_PAGE_NUMBER } from "../Action/type";
 let initState = {
   language: "english",
   currentPage: 1,
+  loaded: false,
 };
 
 const ControllerReducer = (state = initState, action) => {
@@ -13,6 +14,9 @@ const ControllerReducer = (state = initState, action) => {
     case UPDATE_PAGE_NUMBER:
       state.currentPage = action.payload;
       return { ...state };
+    case "RESET_LOADING":
+      state.loaded=action.payload;
+      return {...state};
     default:
       return state;
   }

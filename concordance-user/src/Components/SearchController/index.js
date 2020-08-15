@@ -952,6 +952,7 @@ class SearchController extends Component {
       ner: "",
     },
     isRefresh: false,
+    loaded: false,
   };
   handleWord = ({ searchValue, searchType }) => {
     let newWord = { searchValue: searchValue, searchType: searchType };
@@ -1007,6 +1008,7 @@ class SearchController extends Component {
         value: this.state.tag.ner,
       };
     // this.props.dispatch(createAction(FETCH_SEARCH_DATA, DATA_TEST));
+    this.props.dispatch(createAction("RESET_LOADING", true));
     dataService
       .fetchData_Search(
         this.state.word.searchValue,
@@ -1016,9 +1018,11 @@ class SearchController extends Component {
       )
       .then((res) => {
         this.props.dispatch(createAction(FETCH_SEARCH_DATA, res.data));
+        this.props.dispatch(createAction("RESET_LOADING", false));
       })
       .catch((err) => {
         alert("Fail connection! Please try again!");
+        this.props.dispatch(createAction("RESET_LOADING", false));
       });
   };
   render() {

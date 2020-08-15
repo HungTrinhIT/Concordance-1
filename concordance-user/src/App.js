@@ -14,7 +14,6 @@ import { dataService } from "./Services";
 import Footer from "./Layouts/Footer";
 import Spinner from "./Components/Spinner";
 
-
 class App extends Component {
   componentDidMount() {
     // FETCH Vietnamese sentences
@@ -39,7 +38,7 @@ class App extends Component {
 
   render() {
     return (
-      <BrowserRouter>
+      <BrowserRouter className="wrapper">
         <Header />
         <Switch>
           <Route path="/statistics" component={Statistics} />
@@ -48,7 +47,7 @@ class App extends Component {
           <Route path="/search" component={Search} />
           <Route path="/" component={Home} />
         </Switch>
-        <Spinner/>
+        {this.props.loaded === true? <Spinner /> : null}
         <Footer />
       </BrowserRouter>
     );
@@ -57,6 +56,7 @@ class App extends Component {
 const mapStateToProps = (state) => {
   return {
     pageNumber: state.Controller.currentPage,
+    loaded: state.Controller.loaded,
   };
 };
 export default connect(mapStateToProps)(App);

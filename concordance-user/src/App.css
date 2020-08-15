@@ -49,3 +49,7 @@ input {
 ::-webkit-scrollbar-thumb {
   background: #526170;
 }
+
+.wrapper {
+  position: relative;
+}
