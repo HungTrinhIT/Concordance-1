@@ -19,7 +19,15 @@ class Tag extends Component {
       }
     );
   };
-
+  static getDerivedStateFromProps(props, state) {
+    if (props.isRefresh) {
+      return {
+        typeTag: "",
+        typeTagDetail: "",
+      };
+    }
+    return false;
+  }
   render() {
     let options = null;
     let typeTag =
@@ -46,6 +54,7 @@ class Tag extends Component {
       <div className="tag d-flex justify-content-start algin-items-center">
         <div className="d-block">
           <p className="content__title">Tag</p>
+
           <div className="tag__choosen d-flex justify-content- algin-items-center">
             <div className="form-check mr-3">
               <label className="form-check-label">

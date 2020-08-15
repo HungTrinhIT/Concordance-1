@@ -5,6 +5,7 @@ import Tag from "./Tag";
 import { dataService } from "../../Services";
 import { createAction } from "../../Redux/Action";
 import { FETCH_SEARCH_DATA } from "../../Redux/Action/type";
+import Word from "./Word";
 
 // const DATA_TEST = {
 //   source: [
@@ -942,13 +943,20 @@ import { FETCH_SEARCH_DATA } from "../../Redux/Action/type";
 // };
 class SearchController extends Component {
   state = {
-    searchValue: "",
+    word: {
+      searchValue: "",
+      searchType: "",
+    },
     tag: {
       pos: "",
       ner: "",
     },
+    isRefresh: false,
   };
-
+  handleWord = ({ searchValue, searchType }) => {
+    let newWord = { searchValue: searchValue, searchType: searchType };
+    this.setState({ word: newWord, isRefresh: false });
+  };
   handleTag = ({ key, value }) => {
     let newPos = null,
       newNer = null;
@@ -962,13 +970,28 @@ class SearchController extends Component {
     let newTag = { pos: newPos, ner: newNer };
     this.setState({
       tag: newTag,
+      isRefresh: false,
     });
   };
-  searchWordHandler = (e) => {
+  handleRefresh = () => {
     this.setState({
-      [e.currentTarget.name]: e.currentTarget.value,
+      word: {
+        searchValue: "",
+        searchType: "",
+      },
+      tag: {
+        pos: "",
+        ner: "",
+      },
+      isRefresh: true,
     });
   };
+
+  // Submit search:
+  // Request to server,
+  // then get data if
+  //    1 => setState in Redux ,
+  //    0 => Modal : alert to client
   handleOnsubmit = (e) => {
     e.preventDefault();
     let lang = this.props.languageType === "vietnamese" ? "vn" : "en";
@@ -985,50 +1008,48 @@ class SearchController extends Component {
       };
     // this.props.dispatch(createAction(FETCH_SEARCH_DATA, DATA_TEST));
     dataService
-      .fetchData_Search(this.state.searchValue, lang, optional)
+      .fetchData_Search(
+        this.state.word.searchValue,
+        this.state.word.searchType,
+        lang,
+        optional
+      )
       .then((res) => {
         this.props.dispatch(createAction(FETCH_SEARCH_DATA, res.data));
       })
       .catch((err) => {
         alert("Fail connection! Please try again!");
       });
-    this.setState({
-      searchValue: "",
-      tag: {
-        pos: "",
-        ner: "",
-      },
-    });
   };
   render() {
     return (
       <div className="col-10 seach__controller mt-3">
         <form className="row" onSubmit={this.handleOnsubmit}>
+          {/* SEARCH BY WORD */}
           <div className="col-5">
-            <div className="serach__word ml-4">
-              <div className="form-group">
-                <label htmlFor="searchKey" className="content__title">
-                  Key search
-                </label>
-                <input
-                  type="text"
-                  className="form-control"
-                  id="searchKey"
-                  placeholder="Type keyword to search..."
-                  onChange={this.searchWordHandler}
-                  name="searchValue"
-                  value={this.state.searchValue}
-                />
-              </div>
-            </div>
+            <Word
+              handleWord={this.handleWord}
+              isRefresh={this.state.isRefresh}
+            />
           </div>
+
+          {/* SEARCH BY TAG */}
           <div className="search__tag col-5 ">
-            <Tag handleTag={this.handleTag} />
+            <Tag handleTag={this.handleTag} isRefresh={this.state.isRefresh} />
           </div>
+
+          {/* Button SUBMIT SEARCHc */}
           <div className="col-2 m-auto">
             <div className="search__button">
-              <button type="submit" className="btn-search">
+              <button type="submit" className="btn-search  mb-2">
                 SEARCH
+              </button>
+              <button
+                type="button"
+                className="btn-refresh"
+                onClick={this.handleRefresh}
+              >
+                REFRESH
               </button>
             </div>
           </div>

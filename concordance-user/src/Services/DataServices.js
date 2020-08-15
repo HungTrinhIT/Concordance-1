@@ -8,19 +8,24 @@ class DataService {
       url: `${this.baseURL}/${language}/?page=${number}`,
     });
   }
-  fetchData_Search(keySearch, lang, { key, value }) {
+  fetchData_Search(searchValue, searchType, lang, { key, value }) {
     let getSearchUrl = null;
-    if (keySearch !== "" && !value)
-      getSearchUrl =
-        this.baseURL + "/search/?" + `q=${keySearch}&` + `lang=${lang}`;
-    else if (!keySearch && value !== "")
-      getSearchUrl =
-        this.baseURL + "/search/?" + `lang=${lang}&` + `${key}=${value}`;
-    else if (keySearch !== "" && value !== "")
+    if (searchValue !== "" && !value)
       getSearchUrl =
         this.baseURL +
         "/search/?" +
-        `q=${keySearch}&` +
+        `q=${searchValue}&` +
+        `qt=${searchType}&` +
+        `lang=${lang}`;
+    else if (!searchValue && value !== "")
+      getSearchUrl =
+        this.baseURL + "/search/?" + `lang=${lang}&` + `${key}=${value}`;
+    else if (searchValue !== "" && value !== "")
+      getSearchUrl =
+        this.baseURL +
+        "/search/?" +
+        `q=${searchValue}&` +
+        `qt=${searchType}&` +
         `lang=${lang}&` +
         `${key}=${value}`;
     console.log(getSearchUrl);

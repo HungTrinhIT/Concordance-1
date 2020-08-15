@@ -1,12 +1,19 @@
 /* Search controller */
 .btn-search {
   border: none;
-  padding: 6px 16px;
+  padding: 6px 20px;
   background: #2b3e51;
   color: #ffffff;
   border-radius: 5px;
 }
-.btn-search:hover {
+.btn-refresh{
+  border: none;
+  padding: 6px 16px;
+  background: #0EC648;
+  color: #ffffff;
+  border-radius: 5px;
+}
+.btn-search:hover,.btn-refresh:hover {
   opacity: 0.9;
 }
 
