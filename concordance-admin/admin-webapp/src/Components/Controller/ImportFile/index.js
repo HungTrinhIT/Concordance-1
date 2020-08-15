@@ -2,7 +2,10 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { createAciton } from "../../../Redux/Action";
 import axios from "axios";
-import { UPLOAD_DATA_LANGUAGE } from "../../../Redux/Action/type";
+import {
+  UPLOAD_DATA_LANGUAGE,
+  RESET_LOADING,
+} from "../../../Redux/Action/type";
 class ImportFile extends Component {
   state = {
     selectedFile: null,
@@ -24,6 +27,7 @@ class ImportFile extends Component {
   };
   // Push data to Backend
   fileUploadHandler = (event) => {
+    this.props.dispatch(createAciton(RESET_LOADING, true));
     event.preventDefault();
     const fd = new FormData();
     fd.append("filename", this.state.selectedFile);
@@ -48,9 +52,11 @@ class ImportFile extends Component {
         this.props.dispatch(
           createAciton(UPLOAD_DATA_LANGUAGE, this.state.selectedLanguage)
         );
+        this.props.dispatch(createAciton(RESET_LOADING, false));
       })
       .catch((error) => {
-        console.log(error);
+        alert(error.messege);
+        this.props.dispatch(createAciton(RESET_LOADING, false));
       });
   };
 
@@ -128,5 +134,11 @@ class ImportFile extends Component {
     );
   }
 }
+
+const mapStateToProp = (state) => {
+  return {
+    loaded: state.data.loaded,
+  };
+};
 
 export default connect()(ImportFile);

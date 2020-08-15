@@ -20,3 +20,7 @@
   font-size: 1.6rem;
   color:var(--bg-color-1)
 }
+
+.homepage{
+  position: relative;
+}
