@@ -3,6 +3,7 @@ import {
   FETCH_EN_DATA,
   FETCH_SEARCH_DATA,
   FETCH_DETAIL_SENTENCE,
+  NEXT_PAGE,
 } from "../Action/type";
 
 let initialState = {
@@ -12,6 +13,7 @@ let initialState = {
   },
   searchData: null,
   detailSentence: null,
+  nextPage: null,
 };
 
 const DataReducer = (state = initialState, action) => {
@@ -27,6 +29,9 @@ const DataReducer = (state = initialState, action) => {
       return { ...state };
     case FETCH_DETAIL_SENTENCE:
       state.detailSentence = action.payload;
+      return { ...state };
+    case NEXT_PAGE:
+      state.nextPage = action.payload;
       return { ...state };
     default:
       return state;

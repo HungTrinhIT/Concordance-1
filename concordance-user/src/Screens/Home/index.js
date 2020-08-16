@@ -69,6 +69,7 @@ class Home extends Component {
         .fetchData_pagination(nextProps.pageNumber, "vnsentence")
         .then((res) => {
           this.props.dispatch(createAction(FETCH_VI_DATA, res.data.results));
+          this.props.dispatch(createAction(FETCH_VI_DATA, res.data.next));
         })
         .catch((err) => {
           console.log(err.message);

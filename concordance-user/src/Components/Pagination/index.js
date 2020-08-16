@@ -35,14 +35,20 @@ class Pagination extends Component {
     });
   };
   render() {
-    let clickHandler =
+    let clickPreviousHandler =
       this.state.pageNumber === 1 ? null : () => this.handlePage(-1);
+    let clickNextHandler = !this.props.nextPage
+      ? null
+      : () => this.handlePage(1);
     return (
       <div className="pagination">
         <div className="d-flex justify-content-around align-items-center">
-          <i className="fa fa-chevron-circle-left" onClick={clickHandler}></i>
+          <i
+            className="fa fa-chevron-circle-left"
+            onClick={clickPreviousHandler}
+          ></i>
           <input
-            type="text"
+            type="number/text"
             value={this.state.pageNumber}
             className="pagination__number"
             name="pageNumber"
@@ -50,7 +56,7 @@ class Pagination extends Component {
           />
           <i
             className="fa fa-chevron-circle-right"
-            onClick={() => this.handlePage(1)}
+            onClick={clickNextHandler}
           ></i>
         </div>
       </div>
@@ -61,6 +67,7 @@ class Pagination extends Component {
 const mapStateToProps = (state) => {
   return {
     pageNumber: state.Controller.currentPage,
+    nextPage: state.Data.nextPage,
   };
 };
 export default connect(mapStateToProps)(Pagination);

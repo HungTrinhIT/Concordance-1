@@ -5,3 +5,4 @@ export const FETCH_VI_DATA = "FETCH_VI_DATA";
 export const FETCH_EN_DATA = "FETCH_EN_DATA";
 export const FETCH_SEARCH_DATA = "FETCH_SEARCH_DATA";
 export const FETCH_DETAIL_SENTENCE = "FETCH_DETAIL_SENTENCE";
+export const NEXT_PAGE = "NEXT_PAGE";

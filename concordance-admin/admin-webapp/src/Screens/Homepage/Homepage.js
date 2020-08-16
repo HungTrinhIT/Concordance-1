@@ -8,7 +8,7 @@ import EnData from "../../EnData.json";
 import ViData from "../../ViData.json";
 import { FETCH_EN_DATA, FETCH_VI_DATA } from "../../Redux/Action/type";
 import { dataService } from "../../Services/index";
-import Spinner from "../../Components/Spinner";
+import Spinner from "../../Components/Spinner"; 
 
 class Homepage extends Component {
   componentDidMount() {
@@ -58,7 +58,6 @@ class Homepage extends Component {
     return true;
   }
   render() {
-    console.log("render homepage:", this.props.pageNumber);
     return (
       <div className="container-fluid homepage">
         <h3 className="text-center title-admin">CONCORDANCE ADMIN</h3>

@@ -9,7 +9,7 @@ import Statistics from "./Screens/Statistics";
 import Home from "./Screens/Home";
 import { connect } from "react-redux";
 import { createAction } from "./Redux/Action";
-import { FETCH_VI_DATA, FETCH_EN_DATA } from "./Redux/Action/type";
+import { FETCH_VI_DATA, FETCH_EN_DATA, NEXT_PAGE } from "./Redux/Action/type";
 import { dataService } from "./Services";
 import Footer from "./Layouts/Footer";
 import Spinner from "./Components/Spinner";
@@ -21,6 +21,7 @@ class App extends Component {
       .fetchData_pagination(this.props.pageNumber, "vnsentence")
       .then((response) => {
         this.props.dispatch(createAction(FETCH_VI_DATA, response.data.results));
+        this.props.dispatch(createAction(NEXT_PAGE, response.data.next));
       })
       .catch((error) => {
         console.log(error.message);
@@ -47,7 +48,7 @@ class App extends Component {
           <Route path="/search" component={Search} />
           <Route path="/" component={Home} />
         </Switch>
-        {this.props.loaded === true? <Spinner /> : null}
+        {this.props.loaded === true ? <Spinner /> : null}
         <Footer />
       </BrowserRouter>
     );
