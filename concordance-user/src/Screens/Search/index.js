@@ -90,7 +90,7 @@ class Search extends Component {
         />
       );
     }
-
+    console.log(this.props.data.length);
     return (
       <div className="container">
         <div className="row">
@@ -98,7 +98,14 @@ class Search extends Component {
           <SearchController />
         </div>
         <Linebreak />
-        <div>{tables}</div>
+        <div>
+          {!this.props.data ? (
+            <p className="search-result">
+              Found total <span>{this.props.data.length}</span> results
+            </p>
+          ) : null}
+          {tables}
+        </div>
         <Modal
           show={this.state.modalToggle}
           modalClosed={this.openModalHandler}

@@ -1,0 +1,12 @@
+.search-result{
+    padding-bottom: 1rem;
+    padding-top: 0.5rem;
+    color: #1A1A48;
+    font-weight: bold;
+    line-height: 1rem;
+}
+
+.search-result span{
+    color: red;
+    font-weight: bolder;
+}

@@ -17,6 +17,7 @@ import Spinner from "./Components/Spinner";
 class App extends Component {
   componentDidMount() {
     // FETCH Vietnamese sentences
+
     dataService
       .fetchData_pagination(this.props.pageNumber, "vnsentence")
       .then((response) => {
@@ -24,7 +25,8 @@ class App extends Component {
         this.props.dispatch(createAction(NEXT_PAGE, response.data.next));
       })
       .catch((error) => {
-        console.log(error.message);
+        this.props.dispatch(createAction("RESET_LOADING", false));
+        alert(error.message);
       });
     // FETCH English sentences
     dataService
@@ -33,7 +35,7 @@ class App extends Component {
         this.props.dispatch(createAction(FETCH_EN_DATA, response.data.results));
       })
       .catch((error) => {
-        console.log(error.message);
+        alert(error.message);
       });
   }
 

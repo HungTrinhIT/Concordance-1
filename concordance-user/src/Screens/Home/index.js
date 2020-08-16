@@ -5,7 +5,11 @@ import TableHome from "./TableHome";
 import Pagination from "../../Components/Pagination";
 import { dataService } from "../../Services";
 import { createAction } from "../../Redux/Action";
-import { FETCH_EN_DATA, FETCH_VI_DATA } from "../../Redux/Action/type";
+import {
+  FETCH_EN_DATA,
+  FETCH_VI_DATA,
+  NEXT_PAGE,
+} from "../../Redux/Action/type";
 import Modal from "../../Components/Modal";
 import Backdrop from "../../Components/Backdrop";
 // const data = [
@@ -69,7 +73,7 @@ class Home extends Component {
         .fetchData_pagination(nextProps.pageNumber, "vnsentence")
         .then((res) => {
           this.props.dispatch(createAction(FETCH_VI_DATA, res.data.results));
-          this.props.dispatch(createAction(FETCH_VI_DATA, res.data.next));
+          this.props.dispatch(createAction(NEXT_PAGE, res.data.next));
         })
         .catch((err) => {
           console.log(err.message);

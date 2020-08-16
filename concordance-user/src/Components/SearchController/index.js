@@ -1021,8 +1021,8 @@ class SearchController extends Component {
         this.props.dispatch(createAction("RESET_LOADING", false));
       })
       .catch((err) => {
-        alert("Fail connection! Please try again!");
         this.props.dispatch(createAction("RESET_LOADING", false));
+        alert("Fail connection! Please try again!");
       });
   };
   render() {
