@@ -73,7 +73,7 @@ class Search extends Component {
         <Table
           languageTitle="Vietnamese"
           key="source"
-          data={this.props.data.target}
+          data={this.props.data.source}
           handleRowSelected={this.handleRowSelected}
           selectedID={this.state.rowSelected}
           openModalHandler={this.openModalHandler}
@@ -83,7 +83,7 @@ class Search extends Component {
         <Table
           languageTitle="English"
           key="target"
-          data={this.props.data.source}
+          data={this.props.data.target}
           handleRowSelected={this.handleRowSelected}
           selectedID={this.state.rowSelected}
           openModalHandler={this.openModalHandler}

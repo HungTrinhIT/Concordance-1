@@ -994,8 +994,10 @@ class SearchController extends Component {
   //    1 => setState in Redux ,
   //    0 => Modal : alert to client
   handleOnsubmit = (e) => {
+    
     e.preventDefault();
     let lang = this.props.languageType === "vietnamese" ? "vn" : "en";
+    console.log(this.props.languageType);
     let optional = null;
     if (this.state.tag.pos !== "") {
       optional = {

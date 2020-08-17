@@ -28,6 +28,7 @@ class DataService {
         `qt=${searchType}&` +
         `lang=${lang}&` +
         `${key}=${value}`;
+      console.log(getSearchUrl);
     return axios({
       method: "GET",
       url: getSearchUrl,
