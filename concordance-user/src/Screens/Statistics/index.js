@@ -96,14 +96,14 @@ import {
 class Statistics extends Component {
   state = {
     num: "all", // 1. all , 2. number of top
-    lang: "english",
+    lang: "en",
     count: 0,
     typeTag: "",
     typeTagDetail: "", // 1. No,  2. POS,  3. NER
   };
   componentDidMount() {
     axios
-      .get(`http://127.0.0.1:8000/api/statistic/lang=${this.state.lang}`)
+      .get(`http://127.0.0.1:8000/api/statistic/?lang=${this.state.lang}`)
       .then((res) => {
         this.props.dispatch(createAction(FETCH_STATISTIC_DATA, res.data));
       })
@@ -150,7 +150,7 @@ class Statistics extends Component {
     let temp = [];
     let uniqueArray = [];
     for (let i = 0; i < statisData.length; i++) {
-      temp.push(sumData[i][0]);
+      temp.push(statisData[i][0]);
     }
     
     uniqueArray = temp.filter(this.unique()); // Lọc những word không trùng

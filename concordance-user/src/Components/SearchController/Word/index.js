@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import "./word.css";
 export default class Word extends Component {
   state = {
-    searchType: "", // : 1. match: mat, 2. morphological: mor, 3. phrase: phr
+    searchType: "mat", // : 1. match: mat, 2. morphological: mor, 3. phrase: phr
     searchValue: "",
   };
   onChangleHandler = (e) => {
