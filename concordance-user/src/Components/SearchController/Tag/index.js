@@ -56,7 +56,7 @@ class Tag extends Component {
           <p className="content__title">Tag</p>
 
           <div className="tag__choosen d-flex justify-content- algin-items-center">
-            <div className="form-check mr-3">
+          <div className="form-check mr-3">
               <label className="form-check-label">
                 <input
                   type="checkbox"

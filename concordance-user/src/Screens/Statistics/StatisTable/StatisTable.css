@@ -1,0 +1,45 @@
+/* CUSTOM table */
+.table-fixed {
+  width: 100%;
+}
+
+.table-statis tbody {
+  height: 400px;
+  overflow-y: auto;
+  width: 100%;
+}
+
+.table-statis thead,
+.table-statis tbody,
+.table-statis tr,
+.table-statis td,
+.table-statis th {
+  display: block;
+}
+.table-statis td,
+td {
+  padding: 6px;
+}
+.table-statis tbody td {
+  float: left;
+  cursor: pointer;
+}
+.table-statis tbody td:hover {
+  opacity: 0, 8;
+}
+.table-statis thead th {
+  float: left;
+  background-color: var(--bg-color-1);
+  color: #ffffff;
+}
+/* .table-statis tbody .active-row {
+    display: ruby;
+    background-color: var(--bg-color-2);
+    color: var(--text-white);
+  } */
+
+.language-title {
+  font-weight: 900;
+  margin-bottom: 10px;
+  font-size: 1.2rem;
+}
