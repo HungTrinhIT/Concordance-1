@@ -40,9 +40,9 @@ const DataReducer = (state = initialState, action) => {
     case FETCH_STATISTIC_DATA:
       state.statisData = action.payload;
       return { ...state };
-    case FETCH_SUMARY_DATA
-    :
+    case FETCH_SUMARY_DATA:
       state.sumaryStatistic = action.payload;
+      return { ...state };
     default:
       return state;
   }
