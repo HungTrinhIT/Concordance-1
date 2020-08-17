@@ -9,90 +9,90 @@ import {
   FETCH_STATISTIC_DATA,
   FETCH_SUMARY_DATA,
 } from "../../Redux/Action/type";
-const data = [
-  [".", 9, ".", "O", "-"],
-  ["£", 7, "NN", "O", "-"],
-  ["a", 6, "DT", "O", "-"],
-  ["'", 6, "POS", "O", "-"],
-  ['"', 4, "-", "-", "-"],
-  ["'", 4, "''", "O", "-"],
-  ["is", 3, "VBZ", "O", "-"],
-  ["for", 3, "IN", "O", "-"],
-  ["means", 2, "NNS", "O", "-"],
-  ["the", 2, "DT", "-", "-"],
-  ["the", 2, "DT", "O", "-"],
-  ["It", 2, "PRP", "-", "-"],
-  ["It", 2, "PRP", "O", "-"],
-  ["very", 2, "RB", "O", "-"],
-  [",", 2, ",", "O", "-"],
-  ["person", 1, "NN", "O", "-"],
-  ["petrol", 1, "NN", "O", "-"],
-  ["Renmin", 1, "NNP", "O", "-"],
-  ["people", 1, "NNS", "O", "-"],
-  ["poor", 1, "JJ", "O", "-"],
-  ["pension", 1, "NN", "O", "-"],
-  ["painting", 1, "NN", "O", "-"],
-  ["our", 1, "PRP$", "O", "-"],
-  ["or", 1, "CC", "O", "-"],
-  ["of", 1, "IN", "O", "-"],
-  ["now", 1, "RB", "O", "-"],
-  ["my", 1, "PRP$", "O", "-"],
-  ["month", 1, "NN", "O", "-"],
-  ["money", 1, "NN", "O", "-"],
-  ["Theater", 1, "NNP", "O", "-"],
-  ["!", 1, ".", "-", "-"],
-  ["your", 1, "PRP$", "O", "-"],
-  ["you", 1, "PRP", "O", "-"],
-  ["worth", 1, "JJ", "O", "-"],
-  ["will", 1, "MD", "O", "-"],
-  ["us", 1, "PRP", "O", "-"],
-  ["towards", 1, "IN", "O", "-"],
-  ["to", 1, "TO", "O", "-"],
-  ["price", 1, "NN", "-", "-"],
-  ["Thank", 1, "VB", "O", "-"],
-  ["showing", 1, "VBG", "O", "-"],
-  ["shares", 1, "NNS", "O", "-"],
-  ["says", 1, "VBZ", "O", "-"],
-  ["salary", 1, "NN", "O", "-"],
-  ["respectable", 1, "JJ", "O", "-"],
-  ["keeps", 1, "VBZ", "-", "-"],
-  ["privilege", 1, "NN", "O", "-"],
-  ["'", 1, "''", "-", "-"],
-  ["cheap", 1, "JJ", "-", "-"],
-  ["book", 1, "NN", "O", "-"],
-  ["bi", 1, "FW", "O", "-"],
-  ["be", 1, "VB", "-", "-"],
-  ["at", 1, "IN", "O", "-"],
-  ["at", 1, "IN", "-", "-"],
-  ["are", 1, "VBP", "O", "-"],
-  ["and", 1, "CC", "O", "-"],
-  ["cheap", 1, "JJ", "O", "-"],
-  ["30", 1, "CD", "O", "-"],
-  ["3", 1, "CD", "O", "-"],
-  ["20.000", 1, "CD", "O", "-"],
-  ["20", 1, "CD", "O", "-"],
-  ["2.75", 1, "CD", "O", "-"],
-  ["2", 1, "CD", "O", "-"],
-  ["10", 1, "CD", "O", "-"],
-  ["'s", 1, "VBZ", "O", "-"],
-  ["happy", 1, "JJ", "-", "-"],
-  ["lot", 1, "NN", "O", "-"],
-  ["Line", 1, "NNP", "O", "-"],
-  ["'ll", 1, "MD", "-", "-"],
-  ["journey", 1, "NN", "O", "-"],
-  ["if", 1, "IN", "-", "-"],
-  ["here", 1, "RB", "O", "-"],
-  ["Hartford", 1, "NNP", "LOCATION", "-"],
-  ["hardback", 1, "NN", "O", "-"],
-  ["means", 1, "VBZ", "O", "-"],
-  ["goes", 1, "VBZ", "O", "-"],
-  ["fund", 1, "NN", "O", "-"],
-  ["family", 1, "NN", "-", "-"],
-  ["currency", 1, "NN", "O", "-"],
-  ["cover", 1, "VB", "O", "-"],
-  ["collection", 1, "NN", "O", "-"],
-  ["Chorus", 1, "NNP", "O", "-"],
-];
+// const data = [
+//   [".", 9, ".", "O", "-"],
+//   ["£", 7, "NN", "O", "-"],
+//   ["a", 6, "DT", "O", "-"],
+//   ["'", 6, "POS", "O", "-"],
+//   ['"', 4, "-", "-", "-"],
+//   ["'", 4, "''", "O", "-"],
+//   ["is", 3, "VBZ", "O", "-"],
+//   ["for", 3, "IN", "O", "-"],
+//   ["means", 2, "NNS", "O", "-"],
+//   ["the", 2, "DT", "-", "-"],
+//   ["the", 2, "DT", "O", "-"],
+//   ["It", 2, "PRP", "-", "-"],
+//   ["It", 2, "PRP", "O", "-"],
+//   ["very", 2, "RB", "O", "-"],
+//   [",", 2, ",", "O", "-"],
+//   ["person", 1, "NN", "O", "-"],
+//   ["petrol", 1, "NN", "O", "-"],
+//   ["Renmin", 1, "NNP", "O", "-"],
+//   ["people", 1, "NNS", "O", "-"],
+//   ["poor", 1, "JJ", "O", "-"],
+//   ["pension", 1, "NN", "O", "-"],
+//   ["painting", 1, "NN", "O", "-"],
+//   ["our", 1, "PRP$", "O", "-"],
+//   ["or", 1, "CC", "O", "-"],
+//   ["of", 1, "IN", "O", "-"],
+//   ["now", 1, "RB", "O", "-"],
+//   ["my", 1, "PRP$", "O", "-"],
+//   ["month", 1, "NN", "O", "-"],
+//   ["money", 1, "NN", "O", "-"],
+//   ["Theater", 1, "NNP", "O", "-"],
+//   ["!", 1, ".", "-", "-"],
+//   ["your", 1, "PRP$", "O", "-"],
+//   ["you", 1, "PRP", "O", "-"],
+//   ["worth", 1, "JJ", "O", "-"],
+//   ["will", 1, "MD", "O", "-"],
+//   ["us", 1, "PRP", "O", "-"],
+//   ["towards", 1, "IN", "O", "-"],
+//   ["to", 1, "TO", "O", "-"],
+//   ["price", 1, "NN", "-", "-"],
+//   ["Thank", 1, "VB", "O", "-"],
+//   ["showing", 1, "VBG", "O", "-"],
+//   ["shares", 1, "NNS", "O", "-"],
+//   ["says", 1, "VBZ", "O", "-"],
+//   ["salary", 1, "NN", "O", "-"],
+//   ["respectable", 1, "JJ", "O", "-"],
+//   ["keeps", 1, "VBZ", "-", "-"],
+//   ["privilege", 1, "NN", "O", "-"],
+//   ["'", 1, "''", "-", "-"],
+//   ["cheap", 1, "JJ", "-", "-"],
+//   ["book", 1, "NN", "O", "-"],
+//   ["bi", 1, "FW", "O", "-"],
+//   ["be", 1, "VB", "-", "-"],
+//   ["at", 1, "IN", "O", "-"],
+//   ["at", 1, "IN", "-", "-"],
+//   ["are", 1, "VBP", "O", "-"],
+//   ["and", 1, "CC", "O", "-"],
+//   ["cheap", 1, "JJ", "O", "-"],
+//   ["30", 1, "CD", "O", "-"],
+//   ["3", 1, "CD", "O", "-"],
+//   ["20.000", 1, "CD", "O", "-"],
+//   ["20", 1, "CD", "O", "-"],
+//   ["2.75", 1, "CD", "O", "-"],
+//   ["2", 1, "CD", "O", "-"],
+//   ["10", 1, "CD", "O", "-"],
+//   ["'s", 1, "VBZ", "O", "-"],
+//   ["happy", 1, "JJ", "-", "-"],
+//   ["lot", 1, "NN", "O", "-"],
+//   ["Line", 1, "NNP", "O", "-"],
+//   ["'ll", 1, "MD", "-", "-"],
+//   ["journey", 1, "NN", "O", "-"],
+//   ["if", 1, "IN", "-", "-"],
+//   ["here", 1, "RB", "O", "-"],
+//   ["Hartford", 1, "NNP", "LOCATION", "-"],
+//   ["hardback", 1, "NN", "O", "-"],
+//   ["means", 1, "VBZ", "O", "-"],
+//   ["goes", 1, "VBZ", "O", "-"],
+//   ["fund", 1, "NN", "O", "-"],
+//   ["family", 1, "NN", "-", "-"],
+//   ["currency", 1, "NN", "O", "-"],
+//   ["cover", 1, "VB", "O", "-"],
+//   ["collection", 1, "NN", "O", "-"],
+//   ["Chorus", 1, "NNP", "O", "-"],
+// ];
 class Statistics extends Component {
   state = {
     num: "all", // 1. all , 2. number of top
@@ -102,6 +102,7 @@ class Statistics extends Component {
     typeTagDetail: "", // 1. No,  2. POS,  3. NER
   };
   componentDidMount() {
+    console.log("update thống kê");
     axios
       .get(`http://127.0.0.1:8000/api/statistic/?lang=${this.state.lang}`)
       .then((res) => {
@@ -119,6 +120,10 @@ class Statistics extends Component {
       .catch((err) => {
         alert(err.message);
       });
+  }
+
+  shouldComponentUpdate(nextProps,nextState){
+   
   }
   handleController = (num, lang, count, typeTag, typeTagDetail) => {
     this.setState({
@@ -150,8 +155,8 @@ class Statistics extends Component {
     let statisData = this.props.data;// data theo language để thống kê
     let temp = [];
     let uniqueArray = [];
-    for (let i = 0; i < data.length; i++) {
-      temp.push(data[i][0]);
+    for (let i = 0; i < statisData.length; i++) {
+      temp.push(statisData[i][0]);
     }
     
     uniqueArray = temp.filter(this.unique()); // Lọc những word không trùng
@@ -159,7 +164,7 @@ class Statistics extends Component {
     for (let i = 0; i < uniqueArray.length; i++) {
       let obj = {};
       obj.word = uniqueArray[i];
-      let countArray = data.filter((item) => item[0] === uniqueArray[i]); // mảng chứa những word giống nhau
+      let countArray = statisData.filter((item) => item[0] === uniqueArray[i]); // mảng chứa những word giống nhau
       let count = 0;
       for (let i = 0; i < countArray.length; i++) {
         count += countArray[i][1];
