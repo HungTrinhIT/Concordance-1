@@ -32,16 +32,16 @@ class Search extends Component {
       renderSource = this.props.detailSentence.source.map((item, index) => {
         return (
           <div className="word-item mr-5" key={index}>
-            <p className="mb-2">{item[7]}</p>
-            <p>{item[3]}</p>
+            <p className="mb-2">{item[8]}</p>
+            <p>{item[4]}</p>
           </div>
         );
       });
       renderTarget = this.props.detailSentence.target.map((item, index) => {
         return (
           <div className="word-item mr-5" key={index}>
-            <p>{item[3]}</p>
-            <p className="mt-1">{item[7]}</p>
+            <p>{item[4]}</p>
+            <p className="mt-1">{item[8]}</p>
           </div>
         );
       });
