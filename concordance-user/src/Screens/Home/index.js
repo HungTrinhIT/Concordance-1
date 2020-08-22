@@ -158,16 +158,12 @@ class Home extends Component {
               <div className="modal-content__item-left mt-2">
                 <p className="mb-2">POS</p>
                 <p className="source-title">
-                  {this.props.languageType === "english"
-                    ? "English"
-                    : "Vietnamese"}
+                  Vietnamese
                 </p>
               </div>
               <div className="modal-content__item-left">
                 <p className="source-title">
-                  {this.props.languageType !== "english"
-                    ? "English"
-                    : "Vietnamese"}
+                  English
                 </p>
                 <p className="mt-2 mb-2">POS</p>
               </div>

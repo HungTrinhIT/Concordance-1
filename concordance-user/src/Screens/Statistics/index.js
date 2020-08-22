@@ -100,6 +100,8 @@ class Statistics extends Component {
     count: 0,
     typeTag: "",
     typeTagDetail: "", // 1. No,  2. POS,  3. NER
+    statisData: this.props.statisData || [],
+    sumaryData:this.props.sumaryData ||[]
   };
   componentDidMount() {
     console.log("update thống kê");
@@ -122,8 +124,13 @@ class Statistics extends Component {
       });
   }
 
-  shouldComponentUpdate(nextProps,nextState){
-   
+  static getDerivedStateFromProps(props,state){
+      if(props.statisData!==state.statisData){
+        return{
+          statisData:props.statisData,
+          sumaryData:props.sumaryData
+        }
+      }
   }
   handleController = (num, lang, count, typeTag, typeTagDetail) => {
     this.setState({
@@ -145,14 +152,14 @@ class Statistics extends Component {
   handleData = () => {
     // let totalCount = 5232342;// Tổng số tokens
     let totalCount=0;
-    let sumData = this.props.sumaryData;// Data tổng ban đầu thống kê
+    let sumData = this.state.sumaryData;// Data tổng ban đầu thống kê
     if (sumData.length !== 0) {
       if (this.state.lang === "en") {
         totalCount = sumData[0][1];
       } else totalCount = sumData[1][1];
     }
 
-    let statisData = this.props.data;// data theo language để thống kê
+    let statisData = this.state.statisData;// data theo language để thống kê
     let temp = [];
     let uniqueArray = [];
     for (let i = 0; i < statisData.length; i++) {
@@ -201,7 +208,7 @@ class Statistics extends Component {
               <div>
                 <ul>
                   <li>Total word types: {this.props.sumaryData[1][3]}</li>
-                  <li>Total word token: {this.props.sumaryData[2][1]}</li>
+                  <li>Total word token: {this.props.sumaryData[1][1]}</li>
                   <li>Total sentences: {this.props.sumaryData[1][2]}</li>
                 </ul>
               </div>
@@ -229,7 +236,7 @@ const mapStateToProps = (state) => {
   return {
     lang: state.Controller.language,
     sumaryData: state.Data.sumaryStatistic,
-    data: state.Data.statisData,
+    statisData: state.Data.statisData,
   };
 };
 
