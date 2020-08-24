@@ -52,7 +52,7 @@ export default class Word extends Component {
           <div className="form-check mr-3">
             <label className="form-check-label">
               <input
-                type="checkbox"
+                type="radio"
                 className="form-check-input"
                 name="searchType"
                 value="mat"
@@ -66,7 +66,7 @@ export default class Word extends Component {
           <div className="form-check mr-3">
             <label className="form-check-label">
               <input
-                type="checkbox"
+                type="radio"
                 className="form-check-input"
                 name="searchType"
                 value="mor"
@@ -80,12 +80,13 @@ export default class Word extends Component {
           <div className="form-check">
             <label className="form-check-label">
               <input
-                type="checkbox"
+                type="radio"
                 className="form-check-input"
                 name="searchType"
                 value="phr"
                 onChange={this.onChangleHandler}
                 checked={this.state.searchType === "phr"}
+                disabled
               />
               Phares
             </label>

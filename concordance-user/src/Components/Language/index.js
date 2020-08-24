@@ -25,7 +25,7 @@ class ShowLanguage extends Component {
           <div className="form-check mr-3">
             <label className="form-check-label">
               <input
-                type="checkbox"
+                type="radio"
                 className="form-check-input"
                 name="typeLanguage"
                 value="english"
@@ -38,7 +38,7 @@ class ShowLanguage extends Component {
           <div className="form-check">
             <label className="form-check-label">
               <input
-                type="checkbox"
+                type="radio"
                 className="form-check-input"
                 name="typeLanguage"
                 value="vietnamese"

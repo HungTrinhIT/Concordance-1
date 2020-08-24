@@ -59,7 +59,7 @@ class Tag extends Component {
           <div className="form-check mr-3">
               <label className="form-check-label">
                 <input
-                  type="checkbox"
+                  type="radio"
                   className="form-check-input"
                   name="typeTag"
                   value="pos"
@@ -72,7 +72,7 @@ class Tag extends Component {
             <div className="form-check">
               <label className="form-check-label">
                 <input
-                  type="checkbox"
+                  type="radio"
                   className="form-check-input"
                   name="typeTag"
                   value="ner"
