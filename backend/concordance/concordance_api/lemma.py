@@ -70,6 +70,9 @@ convert = {
 
 
 from re import split
+import json
+
+
 def vnLemma(word):
     temp = word
     words = split(r"\s+", temp)
@@ -82,3 +85,14 @@ def vnLemma(word):
                 break
         words[index] = word
     return "_".join(words)
+
+
+def wordToLemma(word, lang):
+    if lang == "en":
+        word += " "
+        with open('static/english_morpho.json',) as f:
+            data = json.load(f)
+        if not data.get(word):
+            return word
+        return data[word]
+    return vnLemma(word)

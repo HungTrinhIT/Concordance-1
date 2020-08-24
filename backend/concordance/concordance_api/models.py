@@ -9,6 +9,7 @@ from django.db import models
 
 
 class Endata(models.Model):
+    id = models.IntegerField()
     lang = models.CharField(primary_key=True, max_length=2)
     sentence_id = models.CharField(max_length=6)
     word_id = models.CharField(max_length=2)
@@ -38,6 +39,7 @@ class Ensentence(models.Model):
 
 
 class Vndata(models.Model):
+    id = models.IntegerField()
     lang = models.CharField(primary_key=True, max_length=2)
     sentence_id = models.CharField(max_length=6)
     word_id = models.CharField(max_length=2)

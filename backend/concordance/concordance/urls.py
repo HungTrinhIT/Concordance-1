@@ -15,5 +15,8 @@ urlpatterns = [
     path('api/', include(router.urls)),
     path('api/upload/', views.FileUploadView.as_view()),
     path('api/search/', views.Search.as_view()),
-    path('api/detail/', views.DetailSentence.as_view())
+    path('api/detail/', views.DetailSentence.as_view()),
+    path('api/statistic/', views.Statistics.as_view()),
+    path('api/totalstatistics/', views.TotalStatistics.as_view()),
+    path('api/edit/', views.EditDataRaw.as_view())
 ]
