@@ -50,6 +50,7 @@ class DataService {
     } else if (typeTag !== "") {
       urlData += `&${typeTag}=${typeTagDetail}`;
     }
+    console.log(urlData);
     return axios({
       method: "GET",
       url: urlData,
