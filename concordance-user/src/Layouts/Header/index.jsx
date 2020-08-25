@@ -49,11 +49,6 @@ export default function Header() {
                 Help
               </Link>
             </li>
-            <li className="nav-item">
-              <Link className="nav-link" to="/aboutus">
-                Contact
-              </Link>
-            </li>
           </ul>
         </div>
         {/* End navbar item */}
