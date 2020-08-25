@@ -97,14 +97,13 @@ class Search extends Component {
           <SearchController />
         </div>
         <Linebreak />
-        <div>
-          {!this.props.data ? (
-            <p className="search-result">
-              Found total <span>{this.props.data.length}</span> results
-            </p>
-          ) : null}
-          {tables}
-        </div>
+
+        <p className="search-result">
+          Found total <span>{this.props.data.source.length}</span> results
+        </p>
+
+        {/* Search table */}
+        {tables}
         <Modal
           show={this.state.modalToggle}
           modalClosed={this.openModalHandler}
