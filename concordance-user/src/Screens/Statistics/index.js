@@ -24,7 +24,7 @@ class Statistics extends Component {
   }
   // Updating: setState for data
   static getDerivedStateFromProps(props, state) {
-    if (props.sumaryData !== state.sumaryData) {
+    if (props.statisData !== state.statisData) {
       return {
         sumaryData: props.sumaryData,
       };

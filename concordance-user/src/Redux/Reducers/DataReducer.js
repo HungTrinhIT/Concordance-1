@@ -16,7 +16,10 @@ let initialState = {
   searchData: null,
   detailSentence: null,
   nextPage: null,
-  sumaryData: [],
+  sumaryData: [
+    ["en", 645781, 60032, 32468],
+    ["vn", 682632, 60032, 18827],
+  ],
   queryData: [],
 };
 
