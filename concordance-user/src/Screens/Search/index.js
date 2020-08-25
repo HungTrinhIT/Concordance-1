@@ -90,9 +90,8 @@ class Search extends Component {
         />
       );
     }
-    console.log(this.props.data.length);
     return (
-      <div className="container">
+      <div className="myContainer">
         <div className="row">
           <ShowLanguage />
           <SearchController />

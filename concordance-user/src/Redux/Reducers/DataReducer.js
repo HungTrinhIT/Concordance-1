@@ -4,8 +4,8 @@ import {
   FETCH_SEARCH_DATA,
   FETCH_DETAIL_SENTENCE,
   NEXT_PAGE,
-  FETCH_STATISTIC_DATA,
-  FETCH_SUMARY_DATA,
+  FETCH_STATIS_QUERY,
+  FETCH_STATIS_SUMARY,
 } from "../Action/type";
 
 let initialState = {
@@ -16,8 +16,8 @@ let initialState = {
   searchData: null,
   detailSentence: null,
   nextPage: null,
-  statisData: [],
-  sumaryStatistic: [],
+  sumaryData: [],
+  queryData: [],
 };
 
 const DataReducer = (state = initialState, action) => {
@@ -37,11 +37,11 @@ const DataReducer = (state = initialState, action) => {
     case NEXT_PAGE:
       state.nextPage = action.payload;
       return { ...state };
-    case FETCH_STATISTIC_DATA:
-      state.statisData = action.payload;
+    case FETCH_STATIS_QUERY:
+      state.queryData = action.payload;
       return { ...state };
-    case FETCH_SUMARY_DATA:
-      state.sumaryStatistic = action.payload;
+    case FETCH_STATIS_SUMARY:
+      state.sumaryData = action.payload;
       return { ...state };
     default:
       return state;

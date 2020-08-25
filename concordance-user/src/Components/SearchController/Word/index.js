@@ -86,7 +86,7 @@ export default class Word extends Component {
                 value="phr"
                 onChange={this.onChangleHandler}
                 checked={this.state.searchType === "phr"}
-                disabled
+                disabled  
               />
               Phares
             </label>

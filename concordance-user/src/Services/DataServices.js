@@ -28,7 +28,6 @@ class DataService {
         `qt=${searchType}&` +
         `lang=${lang}&` +
         `${key}=${value}`;
-      console.log(getSearchUrl);
     return axios({
       method: "GET",
       url: getSearchUrl,
@@ -37,10 +36,23 @@ class DataService {
   fetchData_SentenceDetail = (id, lang) => {
     let urlSentenceDetail =
       this.baseURL + "/detail/?id=" + `${id}` + "&lang=" + `${lang}`;
-    console.log(urlSentenceDetail);
     return axios({
       method: "GET",
       url: urlSentenceDetail,
+    });
+  };
+  fetchData_QueryStatistic = (num, lang, count, typeTag, typeTagDetail) => {
+    let urlData = "http://127.0.0.1:8000/api/statistic/?lang=" + lang;
+    if (num !== "all") {
+      if (typeTag !== "") {
+        urlData += `&size=${count}&${typeTag}=${typeTagDetail}`;
+      } else urlData += `&size=${count}`;
+    } else if (typeTag !== "") {
+      urlData += `&${typeTag}=${typeTagDetail}`;
+    }
+    return axios({
+      method: "GET",
+      url: urlData,
     });
   };
 }

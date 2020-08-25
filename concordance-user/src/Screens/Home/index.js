@@ -125,7 +125,7 @@ class Home extends Component {
       });
     }
     return (
-      <div className="home container pt-2">
+      <div className="home myContainer pt-2">
         <div className="home__controller mb-3">
           <div className="d-flex">
             <Pagination />

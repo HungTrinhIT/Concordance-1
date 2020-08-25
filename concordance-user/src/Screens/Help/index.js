@@ -13,7 +13,7 @@ export default class Help extends Component {
   };
   render() {
     return (
-      <div className="container">
+      <div className="myContainer">
         <div className="help">
           <div className="help__controller">
             <label className="help__title">List of meaing of tags:</label>

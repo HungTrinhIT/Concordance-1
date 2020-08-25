@@ -53,3 +53,7 @@ input {
 .wrapper {
   position: relative;
 }
+
+.myContainer {
+  margin: 0 40px;
+}

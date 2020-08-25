@@ -997,7 +997,6 @@ class SearchController extends Component {
     
     e.preventDefault();
     let lang = this.props.languageType === "vietnamese" ? "vn" : "en";
-    console.log(this.props.languageType);
     let optional = null;
     if (this.state.tag.pos !== "") {
       optional = {

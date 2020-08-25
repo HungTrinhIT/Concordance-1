@@ -1,14 +1,15 @@
 import React, { Component } from "react";
 import "./StatisTable.css";
-export default class StatisTable extends Component {
+import { connect } from "react-redux";
+class StatisTable extends Component {
   render() {
-    let tbodyContent = this.props.dataStatistic.map((item, index) => {
+    let tbodyContent = this.props.queryData.map((item, index) => {
       return (
         <tr key={index}>
           <td className="col-3 text-center">{item.word}</td>
           <td className="col-3 text-center">{item.count}</td>
           <td className="col-3 text-center">{item.percent}</td>
-          <td className="col-3 text-center">{item.f}</td>
+          <td className="col-3 text-center">{item.F}</td>
         </tr>
       );
     });
@@ -31,3 +32,9 @@ export default class StatisTable extends Component {
     );
   }
 }
+const mapStateToProps = (state) => {
+  return {
+    queryData: state.Data.queryData,
+  };
+};
+export default connect(mapStateToProps)(StatisTable);

@@ -1,38 +1,54 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import "./StatisController.css";
+import { dataService } from "../../../Services";
+import { createAction } from "../../../Redux/Action";
+import { FETCH_STATIS_QUERY } from "../../../Redux/Action/type";
+
 class StatisController extends Component {
   state = {
-    num: "all", // 1. all , 2. number of top
-    lang: "en",
-    count: 0,
-    typeTag: "",
-    typeTagDetail: "", // 1. No,  2. POS,  3. NER
+    num: "all", // 1. all , 2. top
+    lang: "en", // Language for statistic
+    count: 100, // count if top words is top
+    typeTag: "", // Ner or Pos
+    typeTagDetail: "", // Detail Ner or Pos
   };
-
   onChangleHandler = (e) => {
-    this.setState(
-      {
-        [e.target.name]: e.target.value,
-      },
-      () => {
-        this.props.controller(
-          this.state.num,
-          this.state.lang,
-          this.state.count,
-          this.state.typeTag,
-          this.state.typeTagDetail
-        );
-      }
-    );
+    this.setState({
+      [e.target.name]: e.target.value,
+    });
+  };
+  refreshHandler = () => {
+    this.setState({
+      num: "all",
+      lang: "en",
+      count: 100,
+      typeTag: "",
+      typeTagDetail: "",
+    });
+  };
+  onSubmitHandler = (e) => {
+    let { num, lang, count, typeTag, typeTagDetail } = this.state;
+    e.preventDefault();
+    // When submit event is trigged, client will be call API to server
+    dataService
+      .fetchData_QueryStatistic(num, lang, count, typeTag, typeTagDetail)
+      .then((response) => {
+        this.props.dispatch(createAction(FETCH_STATIS_QUERY, response.data));
+      })
+      .catch((error) => {
+        alert(error.message);
+      });
   };
   render() {
     let options = null;
+    // Get typeTag : pos, ner
     let typeTag =
       this.state.lang.charAt(0) +
       this.state.typeTag.charAt(0).toUpperCase() +
       this.state.typeTag.slice(1, this.state.typeTag.length);
     let tagDetail = null;
+    // Get typeTagDetail
     if (this.state.typeTag !== "") {
       tagDetail = this.props.tags[`${typeTag}`].map((item) => {
         return item.tag;
@@ -48,15 +64,16 @@ class StatisController extends Component {
         );
       });
     }
+
     return (
-      <div>
+      <form onSubmit={this.onSubmitHandler}>
         {/* Language */}
         <div className="controller-wrapper">
           <p className="controller__item">Language</p>
           <div className="form-check mr-3">
             <label className="form-check-label">
               <input
-                type="checkbox"
+                type="radio"
                 className="form-check-input"
                 name="lang"
                 value="en"
@@ -69,7 +86,7 @@ class StatisController extends Component {
           <div className="form-check">
             <label className="form-check-label">
               <input
-                type="checkbox"
+                type="radio"
                 className="form-check-input"
                 name="lang"
                 value="vn"
@@ -80,14 +97,13 @@ class StatisController extends Component {
             </label>
           </div>
         </div>
-
         {/* Numbers */}
         <div className="controller-wrapper">
           <p className="controller__item">Numbers</p>
-          <div className="form-check mr-3">
+          <div className="form-check mr-3 mb-2">
             <label className="form-check-label">
               <input
-                type="checkbox"
+                type="radio"
                 className="form-check-input"
                 name="num"
                 value="all"
@@ -97,10 +113,10 @@ class StatisController extends Component {
               All words
             </label>
           </div>
-          <div className="form-check mr-3">
-            <label className="form-check-label">
+          <div className="form-check mr-3 d-flex algin-items-center">
+            <label className="form-check-label mr-2">
               <input
-                type="checkbox"
+                type="radio"
                 className="form-check-input"
                 name="num"
                 value="top"
@@ -109,16 +125,22 @@ class StatisController extends Component {
               />
               Top
             </label>
+            <input
+              type="number"
+              name="count"
+              value={this.state.count}
+              onChange={this.onChangleHandler}
+              disabled={this.state.num === "top" ? false : true}
+            />
           </div>
         </div>
-
         {/* Tag */}
         <div className="controller-wrapper">
           <p className="controller__item">Tag</p>
           <div className="form-check mr-3">
             <label className="form-check-label">
               <input
-                type="checkbox"
+                type="radio"
                 className="form-check-input"
                 name="typeTag"
                 value="pos"
@@ -131,7 +153,7 @@ class StatisController extends Component {
           <div className="form-check">
             <label className="form-check-label">
               <input
-                type="checkbox"
+                type="radio"
                 className="form-check-input"
                 name="typeTag"
                 value="ner"
@@ -163,12 +185,12 @@ class StatisController extends Component {
           <button
             type="button"
             className="btn-refresh"
-            onClick={this.handleRefresh}
+            onClick={this.refreshHandler}
           >
             REFRESH
           </button>
         </div>
-      </div>
+      </form>
     );
   }
 }
