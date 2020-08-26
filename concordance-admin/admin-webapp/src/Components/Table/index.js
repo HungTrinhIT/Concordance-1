@@ -21,9 +21,12 @@ export default class Table extends Component {
   renderTHead = () => {
     let listTHead;
     listTHead = this.state.thead.map((item, index) => {
-      return (
-        <th key={index} className="col-1">{item.charAt(0).toUpperCase() + item.slice(1)}</th>
-      );
+      if (item !== "id")
+        return (
+          <th key={index} className="col-1">
+            {item.charAt(0).toUpperCase() + item.slice(1)}
+          </th>
+        );
     });
     return listTHead;
   };
@@ -32,8 +35,13 @@ export default class Table extends Component {
       let objs = Object.values(item);
       return (
         <tr key={index}>
+          if
           {objs.map((itemTD, index) => {
-            return <td key={index} className="col-1">{itemTD}</td>;
+            return (
+              <td key={index} className="col-1">
+                {itemTD}
+              </td>
+            );
           })}
         </tr>
       );
