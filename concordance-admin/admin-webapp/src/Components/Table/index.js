@@ -21,21 +21,20 @@ export default class Table extends Component {
   renderTHead = () => {
     let listTHead;
     listTHead = this.state.thead.map((item, index) => {
-      if (item !== "id")
-        return (
-          <th key={index} className="col-1">
-            {item.charAt(0).toUpperCase() + item.slice(1)}
-          </th>
-        );
+      return (
+        <th key={index} className="col-1">
+          {item.charAt(0).toUpperCase() + item.slice(1)}
+        </th>
+      );
     });
     return listTHead;
   };
   renderTBody = () => {
     return this.props.data.map((item, index) => {
+      delete item.id;
       let objs = Object.values(item);
       return (
         <tr key={index}>
-          if
           {objs.map((itemTD, index) => {
             return (
               <td key={index} className="col-1">
