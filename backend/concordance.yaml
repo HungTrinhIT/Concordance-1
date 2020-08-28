@@ -1,0 +1,142 @@
+swagger: "2.0"
+info:
+  description: ""
+  version: "1.0.0"
+  title: "Concordance"
+  contact:
+    email: "lehoaibao081999@gmail.com"
+basePath: "/api"
+host: "127.0.0.1:8000"
+tags:
+- name: "user"
+  description: "all api for client user"
+- name: "admin"
+  description: "all api for client admin"
+schemes:
+- "https"
+- "http"
+paths:
+  /endata/:
+    get:
+      tags:
+      - "admin"
+      summary: "Get lines from data raw"
+      description: ""
+      parameters:
+      - in: query
+        name: page
+        type: integer
+        description: "page number"
+      responses:
+        "200":
+          description: "success"
+  /vndata/:
+    get:
+      tags:
+      - "admin"
+      summary: "Get lines from data raw"
+      description: ""
+      parameters:
+      - in: query
+        name: page
+        type: integer
+        description: "page number"
+      responses:
+        "200":
+          description: "success"
+  /ensentence/:
+    get:
+      tags:
+      - "user"
+      summary: "Get lines from data sentence"
+      description: ""
+      parameters:
+      - in: query
+        name: page
+        type: integer
+        description: "page number"
+      responses:
+        "200":
+          description: "success"
+  /vnsentence/:
+    get:
+      tags:
+      - "user"
+      summary: "Get lines from data sentence"
+      description: ""
+      parameters:
+      - in: query
+        name: page
+        type: integer
+        description: "page number"
+      responses:
+        "200":
+          description: "success"
+  /upload/:
+    post:
+      tags:
+      - "admin"
+      summary: "import data to server"
+      description: ""
+      consumes:
+         - multipart/form-data
+      parameters:
+      - in: query
+        name: lang
+        type: string
+        enum: ['en', 'vn']
+        default: 'en'
+        required: true
+      - in: formData
+        name: filename
+        type: file
+        required: true
+      responses:
+        "200":
+          description: "success"
+  /search/:
+    get:
+      tags:
+      - "user"
+      summary: "search keyword"
+      description: ""
+      parameters:
+      - in: query
+        name: q
+        type: string
+        required: true
+      - in: query
+        name: lang
+        type: string
+        enum: ['en', 'vn']
+        required: true
+      - in: query
+        name: pos
+        type: string
+      - in: query
+        name: ner
+        type: string
+      responses:
+        "200":
+          description: "success"
+  /detail/:
+    get:
+      tags:
+      - "user"
+      summary: "get detail sentence"
+      description: ""
+      parameters:
+      - in: query
+        name: id
+        type: string
+        required: true
+        default: "000001"
+      - in: query
+        name: lang
+        type: string
+        enum: ['en', 'vn']
+        required: true
+      responses:
+        "200":
+          description: "success"
+  

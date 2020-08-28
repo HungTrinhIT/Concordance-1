@@ -89,6 +89,7 @@ class Statistics(views.APIView):
         sql += " group by word order by count desc"
         if size:
             sql += " limit " + size
+        
         temp = None
         result = []
         with closing(connection.cursor()) as cursor:
@@ -153,7 +154,7 @@ class Search(views.APIView):
         check.remove(lang)
 
         if qt == 'mat':
-            sql = "select sentence_id ,word, links from {}Data where word = %s ".format(
+            sql = "select sentence_id ,word, links from {}Data where binary word = binary %s ".format(
             lang.capitalize())
         else:
             keyword = wordToLemma(keyword, lang)
