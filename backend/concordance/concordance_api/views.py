@@ -13,6 +13,9 @@ from .lemma import wordToLemma
 from .help import getListSentence
 import math
 from django.http import QueryDict
+from django.contrib.auth.hashers import make_password, check_password
+import jwt
+from datetime import datetime, timedelta
 
 
 class FileUploadView(views.APIView):
@@ -55,7 +58,7 @@ class EditDataRaw(views.APIView):
         put = QueryDict(request.body)
         id = put.get("id")
         lang = put.get("lang")
-        sql = "UPDATE {}Data".format(lang.capitalize())
+        sql = "UPDATE {}Data".format("En" if lang == "ED" else "Vn")
         for i in put:
             if i == "id" or i == 'lang':
                 continue
@@ -220,6 +223,36 @@ class Search(views.APIView):
                     {"key": key, "left": left, "right": right, "sentence_id": temp[i][0], "lang": check[0]})
 
         return Response(result, 200)
+
+
+class UserAPI(viewsets.ModelViewSet):
+    serializer_class = UserSerializer
+    queryset = User.objects.all()
+
+    def create(self, request, format=None):
+        req = request.POST
+        username = req['username']
+        password = req['password']
+        role = req['role']
+        user = User.objects.filter(username=username)
+        if not user:
+            user = User.objects.create(username=username, password=make_password(password), role=role)
+            return Response(status=200)
+        return Response("User already existed", status=400)
+    
+    @action(detail=False, methods=['POST'])
+    def loginAdmin(self, request, format=None):
+        req = request.POST
+        username = req['username']
+        password = req['password']
+        user = User.objects.filter(username=username)
+        if user:
+            if user[0].role=='admin' and check_password(password,user[0].password): 
+                encoded_jwt = jwt.encode({'username': username,'exp':datetime.utcnow() + timedelta(hours=24)}, 'secret', algorithm='HS256')
+                return Response({'token':encoded_jwt,'username':username, })
+            else:
+                return Response("wrong username/password", status=400)
+        return Response("wrong username/password", status=400) 
 
 
 class EnDataAPI(viewsets.ModelViewSet):

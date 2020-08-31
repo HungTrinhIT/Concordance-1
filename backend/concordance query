@@ -191,3 +191,10 @@ CREATE TRIGGER after_delete_VnStatistics
         AFTER DELETE ON VnStatistics
         FOR EACH ROW
     UPDATE TotalStatistics SET totalWord = totalWord - 1 where lang='vn';//
+
+CREATE TABLE IF NOT EXISTS User (
+    id int auto_increment PRIMARY KEY,
+    username varchar(100),
+    password varchar(100),
+    role ENUM('admin','user') default 'user'
+);//

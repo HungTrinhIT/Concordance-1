@@ -9,8 +9,7 @@ from django.db import models
 
 
 class Endata(models.Model):
-    id = models.IntegerField()
-    lang = models.CharField(primary_key=True, max_length=2)
+    lang = models.CharField(max_length=2)
     sentence_id = models.CharField(max_length=6)
     word_id = models.CharField(max_length=2)
     word = models.CharField(max_length=100)
@@ -26,21 +25,53 @@ class Endata(models.Model):
     class Meta:
         managed = False
         db_table = 'EnData'
-        unique_together = (('lang', 'sentence_id', 'word_id'),)
 
 
 class Ensentence(models.Model):
-    sentence_id = models.CharField(primary_key=True, max_length=6)
-    sentence = models.CharField(max_length=500)
+    sentence_id = models.CharField(max_length=6)
+    sentence = models.CharField(max_length=1000)
 
     class Meta:
         managed = False
         db_table = 'EnSentence'
 
 
-class Vndata(models.Model):
-    id = models.IntegerField()
+class Enstatistics(models.Model):
+    word = models.CharField(primary_key=True, max_length=100)
+    count = models.IntegerField(blank=True, null=True)
+    pos = models.CharField(max_length=10)
+    ner = models.CharField(max_length=20)
+    semantic = models.CharField(max_length=100)
+
+    class Meta:
+        managed = False
+        db_table = 'EnStatistics'
+        unique_together = (('word', 'pos', 'ner', 'semantic'),)
+
+
+class Totalstatistics(models.Model):
     lang = models.CharField(primary_key=True, max_length=2)
+    totaltoken = models.IntegerField(db_column='totalToken', blank=True, null=True)  # Field name made lowercase.
+    totalsentence = models.IntegerField(db_column='totalSentence', blank=True, null=True)  # Field name made lowercase.
+    totalword = models.IntegerField(db_column='totalWord', blank=True, null=True)  # Field name made lowercase.
+
+    class Meta:
+        managed = False
+        db_table = 'TotalStatistics'
+
+
+class User(models.Model):
+    username = models.CharField(max_length=100, blank=True, null=True)
+    password = models.CharField(max_length=100, blank=True, null=True)
+    role = models.CharField(max_length=5, blank=True, null=True)
+
+    class Meta:
+        managed = False
+        db_table = 'User'
+
+
+class Vndata(models.Model):
+    lang = models.CharField(max_length=2)
     sentence_id = models.CharField(max_length=6)
     word_id = models.CharField(max_length=2)
     word = models.CharField(max_length=100)
@@ -56,16 +87,28 @@ class Vndata(models.Model):
     class Meta:
         managed = False
         db_table = 'VnData'
-        unique_together = (('lang', 'sentence_id', 'word_id'),) 
 
 
 class Vnsentence(models.Model):
-    sentence_id = models.CharField(primary_key=True, max_length=6)
-    sentence = models.CharField(max_length=500)
+    sentence_id = models.CharField(max_length=6)
+    sentence = models.CharField(max_length=1000)
 
     class Meta:
         managed = False
         db_table = 'VnSentence'
+
+
+class Vnstatistics(models.Model):
+    word = models.CharField(primary_key=True, max_length=100)
+    count = models.IntegerField(blank=True, null=True)
+    pos = models.CharField(max_length=10)
+    ner = models.CharField(max_length=20)
+    semantic = models.CharField(max_length=100)
+
+    class Meta:
+        managed = False
+        db_table = 'VnStatistics'
+        unique_together = (('word', 'pos', 'ner', 'semantic'),)
 
 
 class DjangoMigrations(models.Model):
@@ -75,4 +118,4 @@ class DjangoMigrations(models.Model):
 
     class Meta:
         managed = False
-        db_table = 'django_migrations' 
+        db_table = 'django_migrations'

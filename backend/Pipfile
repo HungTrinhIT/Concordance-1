@@ -11,6 +11,8 @@ djangorestframework = "*"
 mysqlclient = "*"
 django-cors-headers = "*"
 nltk = "*"
+djangorestframework-simplejwt = "*"
+pyjwt = "*"
 
 [requires]
 python_version = "3.6"
