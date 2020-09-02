@@ -1,0 +1,13 @@
+.controller-wrapper {
+  margin-bottom: 20px;
+}
+
+.controller__item {
+  font-weight: bold;
+  margin-bottom: 0.3rem;
+  font-size: 20px;
+}
+
+.controller__item-ctn{
+    padding-left: 16px;
+}

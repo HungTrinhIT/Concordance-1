@@ -1,0 +1,39 @@
+/* Search controller */
+.btn-search {
+  border: solid 2px #2b3e51;
+  padding: 6px 20px;
+  background: #ffffff;
+  color: #2b3e51;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: all .2s;
+}
+.btn-search:hover{
+  color:#ffffff;
+  background-color: #2b3e51;
+}
+.btn-refresh:hover{
+  color:#ffffff;
+  background-color: #0EC648;
+}
+.btn-refresh {
+  border: solid 2px #0EC648;
+  padding: 6px 16px;
+  background: #ffffff;
+  color: #0ec648;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: all .2s;
+}
+
+
+.content__title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  margin-bottom: 0.5rem;
+}
+
+.active {
+  background-color: #526170;
+  color: #ffffff;
+}

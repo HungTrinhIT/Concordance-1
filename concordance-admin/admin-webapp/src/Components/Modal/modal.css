@@ -1,0 +1,18 @@
+.Modal {
+  position: fixed;
+  z-index: 500;
+  background-color: white;
+  height: 640px;
+  width: 800px;
+  border: 3px solid var(--bg-color-main);
+  padding: 8px 16px;
+  top: 8%;
+  left: 25%;
+  transition: all 0.3s ease-out;
+  border-radius: 5px;
+  border:1px solid black;
+}
+
+.icon-close{
+  font-size: 24px;
+}

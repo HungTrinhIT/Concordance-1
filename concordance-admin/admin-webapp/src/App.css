@@ -1,0 +1,14 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+
+:root {
+  --bg-color-1: #563d7c;
+  --bg-color-2: #526170;
+  --bg-color-3: #2b3e51;
+  --text-white: #ffffff;
+  --text-black: #000000;
+}

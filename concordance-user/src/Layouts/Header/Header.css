@@ -1,0 +1,39 @@
+.header {
+  margin-bottom: 70px;
+}
+.header nav {
+  background-color: var(--bg-color-main);
+  opacity: 0.9;
+}
+.navItems {
+  margin-left: auto;
+  margin-right: 2rem;
+}
+.nav-item {
+  margin-left: 20px;
+}
+.nav-item .nav-link,
+.logo {
+  font-size: 1.2rem;
+  color: var(--text-white);
+}
+
+.nav-link:hover {
+  background-color: #ffffff;
+  color: var(--bg-color-1);
+}
+
+.header .logo-img {
+  width: 45px;
+  height: 45px;
+  border-radius: 50%;
+}
+
+.header .logo span {
+  font-size: 1.4rem;
+  letter-spacing: 2px;
+}
+
+.header .nav-item .nav-link {
+  letter-spacing: 1px;
+}

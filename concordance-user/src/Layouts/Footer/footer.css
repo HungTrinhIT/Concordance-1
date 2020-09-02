@@ -1,0 +1,52 @@
+.footer {
+  padding: 40px 0;
+  background-color: var(--bg-color-main);
+  padding: 20px 0;
+  color: #ffffff;
+}
+.footer__top {
+  display: block;
+  position: relative;
+}
+.footer__top .footer__logo img {
+  width: 115px;
+  height: auto;
+}
+.footer__top p {
+  color: var(--text-white);
+  font-size: 1.8rem;
+}
+.footer__top::after {
+  content: "";
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  height: 1px;
+  width: 100%;
+  background-color: #172c65;
+}
+
+.footer__bottom {
+  padding-top: 20px;
+}
+.footer__item ul {
+  list-style: none;
+}
+.footer__title {
+  margin-bottom: 20px;
+  line-height: 24px;
+}
+.footer__item li {
+  margin-bottom: 10px;
+  font-size: 0.875rem;
+  color: hsla(0, 0%, 100%, 0.7);
+}
+.footer__item img {
+  width: 135px;
+  height: auto;
+}
+
+.footer__license {
+  padding-top: 20px;
+  text-align: center;
+}
