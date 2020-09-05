@@ -12,6 +12,7 @@ import json
 from .lemma import wordToLemma
 from .help import getListSentence
 import math
+import ast
 from django.http import QueryDict
 from django.contrib.auth.hashers import make_password, check_password
 import jwt
@@ -55,19 +56,21 @@ class TotalStatistics(views.APIView):
 
 class EditDataRaw(views.APIView):
     def put(self, request, format=None):
-        put = QueryDict(request.body)
-        id = put.get("id")
-        lang = put.get("lang")
-        sql = "UPDATE {}Data".format("En" if lang == "ED" else "Vn")
+        put = request.body
+        put = ast.literal_eval(put.decode('utf-8'))
+        put = put['body']
+        lang = put['lang']
+        id = put['id']
+        sql = "UPDATE {}Data SET".format("En" if lang == "ED" else "Vn")
         for i in put:
             if i == "id" or i == 'lang':
                 continue
             if "'" in put[i]:
-                sql += " SET {}=\"{}\"".format(i, put[i])
+                sql += " {}=\"{}\",".format(i, put[i])
             else:
-                sql += " SET {}='{}'".format(i, put[i]) 
-        
-        sql += " where id="+id
+                sql += " {}='{}',".format(i, put[i]) 
+        sql = sql[:-1]
+        sql += " where id={}".format(id)
         with closing(connection.cursor()) as cursor:
             cursor.execute(sql)
         return Response(status=200)
@@ -231,8 +234,8 @@ class UserAPI(viewsets.ModelViewSet):
 
     def create(self, request, format=None):
         req = request.POST
-        username = req['username']
-        password = req['password']
+        username = req.get('username')
+        password = req.get('password')
         role = req['role']
         user = User.objects.filter(username=username)
         if not user:
@@ -242,7 +245,10 @@ class UserAPI(viewsets.ModelViewSet):
     
     @action(detail=False, methods=['POST'])
     def loginAdmin(self, request, format=None):
-        req = request.POST
+        req = request.body
+        req = ast.literal_eval(req.decode('utf-8'))
+        req = req['body']
+        # req = request.POST
         username = req['username']
         password = req['password']
         user = User.objects.filter(username=username)
