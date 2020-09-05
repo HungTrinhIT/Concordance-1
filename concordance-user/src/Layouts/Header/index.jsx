@@ -52,6 +52,12 @@ export default function Header() {
           </ul>
         </div>
         {/* End navbar item */}
+
+        <div className="direct-admin">
+          <a href="http://localhost:3001/login" target="_blank">
+            Go to admin<i class="fa fa-directions ml-3"></i>
+          </a>
+        </div>
       </nav>
     </header>
   );

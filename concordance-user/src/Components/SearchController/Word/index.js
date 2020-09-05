@@ -21,7 +21,7 @@ export default class Word extends Component {
   static getDerivedStateFromProps(props, state) {
     if (props.isRefresh) {
       return {
-        searchType: "",
+        searchType: "mat",
         searchValue: "",
       };
     }
