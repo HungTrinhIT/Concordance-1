@@ -1,7 +1,11 @@
 import React, { Component } from "react";
 import "./login.css";
 import axios from "axios";
-export default class Login extends Component {
+import { connect } from "react-redux";
+import { createAciton } from "../../Redux/Action";
+import { FETCH_CREDENTIALS } from "../../Redux/Action/type";
+import { Redirect } from "react-router-dom";
+class Login extends Component {
   state = {
     username: "",
     password: "",
@@ -17,6 +21,18 @@ export default class Login extends Component {
   onSubmitHandler = (e) => {
     e.preventDefault();
     let { username, password } = this.state;
+    const { history } = this.props;
+    // this.props.dispatch(
+    //   createAciton(FETCH_CREDENTIALS, {
+    //     username: "Hung",
+    //     token: "qeq14ewewqe",
+    //   })
+    // );
+    // localStorage.setItem(
+    //   "credentials",
+    //   JSON.stringify({ username: "Hung", token: "qeq14ewewqe" })
+    // );
+
     axios
       .post("http://127.0.0.1:8000/api/user/loginAdmin/", {
         body: {
@@ -25,13 +41,19 @@ export default class Login extends Component {
         },
       })
       .then((res) => {
-        alert(res.statu);
+        // Login success
+        this.props.dispatch(createAciton(FETCH_CREDENTIALS, res.data));
+        localStorage.setItem("credentials", JSON.stringify(res.data));
+        history.push("/");
       })
       .catch((err) => {
         alert(err.message);
       });
   };
   render() {
+    if (this.props.user) {
+      return <Redirect to="/" />;
+    }
     return (
       <div className="limiter">
         <div className="container-login100">
@@ -93,3 +115,9 @@ export default class Login extends Component {
     );
   }
 }
+const mapStateToProp = (state) => {
+  return {
+    user: state.user.credentials,
+  };
+};
+export default connect(mapStateToProp)(Login);

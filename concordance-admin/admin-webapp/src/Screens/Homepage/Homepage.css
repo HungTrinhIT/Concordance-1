@@ -3,7 +3,7 @@
   width: 100%;
   height: 2px;
   background-color: var(--bg-color-1);
-  margin: 20px 0
+  margin: 20px 0;
 }
 .title-admin {
   background-color: var(--bg-color-1);
@@ -12,15 +12,27 @@
   margin-bottom: 20px;
 }
 
-.language{
-  font-size:1.4rem;
+.language {
+  font-size: 1.4rem;
   font-weight: bold;
 }
-.language i{
+.language i {
   font-size: 1.6rem;
-  color:var(--bg-color-1)
+  color: var(--bg-color-1);
 }
 
-.homepage{
+.homepage {
   position: relative;
 }
+
+.header-admin {
+  background-color: var(--bg-color-1);
+  color: #ffffff;
+  padding: 16px 24px;
+  margin-bottom: 24px;
+}
+.log-out-ctn{
+  font-size:20px;
+  cursor: pointer;
+}
+

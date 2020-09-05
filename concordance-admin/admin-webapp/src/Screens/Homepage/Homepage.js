@@ -4,7 +4,7 @@ import Controller from "../../Components/Controller";
 import Table from "../../Components/Table";
 import { connect } from "react-redux";
 import { createAciton } from "../../Redux/Action/index";
-import { FETCH_EN_DATA, FETCH_VI_DATA } from "../../Redux/Action/type";
+import { FETCH_EN_DATA, FETCH_VI_DATA, LOG_OUT } from "../../Redux/Action/type";
 import { dataService } from "../../Services/index";
 import Spinner from "../../Components/Spinner";
 import Modal from "../../Components/Modal";
@@ -67,16 +67,33 @@ class Homepage extends Component {
       editData: item,
     });
   };
-
+  logOutHandler = () => {
+    this.props.dispatch(createAciton(LOG_OUT, null));
+    this.props.history.push("/login");
+  };
   openModalHandler = () => {
     this.setState({
       modalToggle: !this.state.modalToggle,
     });
   };
   render() {
+    let { user } = this.props;
+    let userContent = null;
+    if (user) {
+      userContent = (
+        <div className="log-out-ctn">
+          <span className="log-out-icon" onClick={this.logOutHandler}>
+            Log out  <i className="fa fa-sign-out-alt ml-2"></i>
+          </span>
+        </div>
+      );
+    }
     return (
       <div className="container-fluid homepage">
-        <h3 className="text-center title-admin">CONCORDANCE ADMIN</h3>
+        <div className="d-flex justify-content-between align-items-center header-admin">
+          <h3 className="admin-title">CONCORDANCE ADMIN</h3>
+          {userContent}
+        </div>
         <Controller />
         <div className="line"></div>
         {/* EngData */}
@@ -122,6 +139,7 @@ const mapStateToProps = (state) => {
     enData: state.data.enData,
     pageNumber: state.data.currentPage,
     loaded: state.data.loaded,
+    user: state.user.credentials,
   };
 };
 export default connect(mapStateToProps)(Homepage);
