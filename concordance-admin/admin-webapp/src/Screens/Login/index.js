@@ -20,9 +20,7 @@ export default class Login extends Component {
     fd.append("username", this.state.username);
     fd.append("password", this.state.password);
     axios
-      .post("http://127.0.0.1:8000/api/user/loginAdmin/", {
-        fd,
-      })
+      .post("http://127.0.0.1:8000/api/user/loginAdmin/", fd)
       .then((res) => {
         alert(res.statu);
       })
