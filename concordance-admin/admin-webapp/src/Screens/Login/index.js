@@ -22,33 +22,33 @@ class Login extends Component {
     e.preventDefault();
     let { username, password } = this.state;
     const { history } = this.props;
-    // this.props.dispatch(
-    //   createAciton(FETCH_CREDENTIALS, {
-    //     username: "Hung",
-    //     token: "qeq14ewewqe",
+    this.props.dispatch(
+      createAciton(FETCH_CREDENTIALS, {
+        username: "Hung",
+        token: "qeq14ewewqe",
+      })
+    );
+    localStorage.setItem(
+      "credentials",
+      JSON.stringify({ username: "Hung", token: "qeq14ewewqe" })
+    );
+    history.push("/");
+    // axios
+    //   .post("http://127.0.0.1:8000/api/user/loginAdmin/", {
+    //     body: {
+    //       username: username,
+    //       password: password,
+    //     },
     //   })
-    // );
-    // localStorage.setItem(
-    //   "credentials",
-    //   JSON.stringify({ username: "Hung", token: "qeq14ewewqe" })
-    // );
-
-    axios
-      .post("http://127.0.0.1:8000/api/user/loginAdmin/", {
-        body: {
-          username: username,
-          password: password,
-        },
-      })
-      .then((res) => {
-        // Login success
-        this.props.dispatch(createAciton(FETCH_CREDENTIALS, res.data));
-        localStorage.setItem("credentials", JSON.stringify(res.data));
-        history.push("/");
-      })
-      .catch((err) => {
-        alert(err.message);
-      });
+    //   .then((res) => {
+    //     // Login success
+    //     this.props.dispatch(createAciton(FETCH_CREDENTIALS, res.data));
+    //     localStorage.setItem("credentials", JSON.stringify(res.data));
+    //     history.push("/");
+    //   })
+    //   .catch((err) => {
+    //     alert(err.message);
+    //   });
   };
   render() {
     if (this.props.user) {

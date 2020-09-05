@@ -83,7 +83,7 @@ class Homepage extends Component {
       userContent = (
         <div className="log-out-ctn">
           <span className="log-out-icon" onClick={this.logOutHandler}>
-            Log out  <i className="fa fa-sign-out-alt ml-2"></i>
+            Log out <i className="fa fa-sign-out-alt ml-2"></i>
           </span>
         </div>
       );
@@ -91,8 +91,15 @@ class Homepage extends Component {
     return (
       <div className="container-fluid homepage">
         <div className="d-flex justify-content-between align-items-center header-admin">
-          <h3 className="admin-title">CONCORDANCE ADMIN</h3>
-          {userContent}
+          <h3 className="admin-title">CONCORDANCE USER</h3>
+          <div className="d-flex align-items-center">
+            {userContent}
+            <div className="direct-admin ml-3 ">
+              <a href="http://localhost:3000/" target="_blank">
+                Go to user
+              </a>
+            </div>
+          </div>
         </div>
         <Controller />
         <div className="line"></div>
