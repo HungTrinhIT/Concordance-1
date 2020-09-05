@@ -139,4 +139,4 @@ const mapStateToProp = (state) => {
   };
 };
 
-export default connect()(ImportFile);
+export default connect(mapStateToProp)(ImportFile);

@@ -54,7 +54,7 @@ class Modal extends Component {
   render() {
     let entries = Object.entries(this.state.data);
     let modalContent = [];
-    for (const [key, value] of entries) {
+    for (const [key] of entries) {
       let disabled = false;
       if (key === "id" || key === "lang" || key === "sentence_id")
         disabled = true;
@@ -94,7 +94,7 @@ class Modal extends Component {
         <form onSubmit={this.onSubmitHandler}>
           <div className="row ">{modalContent}</div>
           <div className="border-top btn-wrp-edit">
-            <button type="submit" class="btn btn-info mt-2 btn-edit-summit">
+            <button type="submit" className="btn btn-info mt-2 btn-edit-summit">
               SAVE CHAGES
             </button>
           </div>

@@ -27,6 +27,11 @@ class Pagination extends Component {
     );
   };
 
+  handleOnChange=e=>{
+    this.setState({
+      [e.target.name]: e.target.value
+    })
+  }
   render() {
     return (
       <div className="col-4 pagination">
