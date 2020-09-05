@@ -17,12 +17,19 @@ export default class Login extends Component {
   onSubmitHandler = (e) => {
     e.preventDefault();
     let { username, password } = this.state;
-    axios.post("http://127.0.0.1:8000/api/user/loginAdmin/", {
-      body: {
-        username: username,
-        password: password,
-      },
-    });
+    axios
+      .post("http://127.0.0.1:8000/api/user/loginAdmin/", {
+        body: {
+          username: username,
+          password: password,
+        },
+      })
+      .then((res) => {
+        alert(res.statu);
+      })
+      .catch((err) => {
+        alert(err.message);
+      });
   };
   render() {
     return (
