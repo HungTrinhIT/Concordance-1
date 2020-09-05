@@ -81,7 +81,9 @@ export default class Login extends Component {
                 </span>
               </div>
               <div className="container-login100-form-btn">
-                <button className="login100-form-btn">Login</button>
+                <button className="login100-form-btn" type="submit">
+                  Login
+                </button>
               </div>
             </form>
             {/* End form login */}
