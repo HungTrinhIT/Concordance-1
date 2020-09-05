@@ -60,7 +60,7 @@ class Modal extends Component {
         disabled = true;
       let label = key.charAt(0).toUpperCase() + key.slice(1);
       modalContent.push(
-        <div className="col-6">
+        <div className="col-4">
           <div className="form-group">
             <label className="font-weight-bold">{label}</label>
             <input
