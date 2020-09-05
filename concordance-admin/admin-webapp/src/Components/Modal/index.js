@@ -4,6 +4,7 @@ import Axios from "axios";
 class Modal extends Component {
   state = {
     data: {
+      id: "",
       lang: "",
       sentence_id: "",
       word_id: "",
@@ -39,11 +40,12 @@ class Modal extends Component {
   //Day data edit len server
   onSubmitHandler = (e) => {
     e.preventDefault();
-    Axios.post("http://127.0.0.1:8000/api/edit/", {
+    Axios.put("http://127.0.0.1:8000/api/edit/", {
       body: this.state.data,
     })
       .then((res) => {
         alert("Update thanh cong!!");
+        this.props.openModalHandler();
       })
       .catch((err) => {
         alert(err.message);
@@ -53,11 +55,14 @@ class Modal extends Component {
     let entries = Object.entries(this.state.data);
     let modalContent = [];
     for (const [key, value] of entries) {
+      let disabled = false;
+      if (key === "id" || key === "lang" || key === "sentence_id")
+        disabled = true;
       let label = key.charAt(0).toUpperCase() + key.slice(1);
       modalContent.push(
         <div className="col-6">
           <div className="form-group">
-            <label>{label}</label>
+            <label className="font-weight-bold">{label}</label>
             <input
               type="text"
               className="form-control"
@@ -65,6 +70,7 @@ class Modal extends Component {
               name={key}
               value={this.state.data[`${key}`]}
               onChange={this.onChangeHandler}
+              disabled={disabled}
             />
           </div>
         </div>
@@ -86,9 +92,9 @@ class Modal extends Component {
           ></i>
         </div>
         <form onSubmit={this.onSubmitHandler}>
-          <div className="row ">
-            {modalContent}
-            <button type="submit" class="btn btn-info ml-auto mr-3">
+          <div className="row ">{modalContent}</div>
+          <div className="border-top btn-wrp-edit">
+            <button type="submit" class="btn btn-info mt-2 btn-edit-summit">
               SAVE CHAGES
             </button>
           </div>

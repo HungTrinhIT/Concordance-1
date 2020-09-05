@@ -35,17 +35,22 @@ export default class Table extends Component {
   };
   render() {
     let tbodyContent = this.props.data.map((item, index) => {
-      delete item.id;
       let objs = Object.values(item);
       return (
         <tr key={index} onDoubleClick={() => this.handleSentenceDetail(item)}>
-          {objs.map((itemTD, index) => {
-            return (
-              <td key={index} className="col-1">
-                {itemTD}
-              </td>
-            );
-          })}
+          {objs
+            // Filter callback: help us remove id item
+            .filter((itemTD) => {
+              if (typeof itemTD === "number") return false;
+              return itemTD;
+            })
+            .map((itemTD, index) => {
+              return (
+                <td key={index} className="col-1">
+                  {itemTD}
+                </td>
+              );
+            })}
         </tr>
       );
     });

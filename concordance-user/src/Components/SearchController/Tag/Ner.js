@@ -4,11 +4,20 @@ class Ner extends Component {
   state = {
     typeTag: "",
     typeTagDetail: "",
+    checked:false,
   };
   onChangleHandler = (event) => {
+    if(event.target.name==="typeTag"){
+      this.setState({
+        checked:!this.state.checked,
+        typeTagDetail:""
+      })
+    }
     this.setState(
       {
+        
         [event.target.name]: event.target.value,
+        
       },
       () => {
         this.props.handleTag({
@@ -59,7 +68,7 @@ class Ner extends Component {
               name="typeTag"
               value="ner"
               onChange={this.onChangleHandler}
-              checked={this.state.typeTag === "ner"}
+              checked={this.state.checked}
             />
             Ner
           </label>
