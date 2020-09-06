@@ -8,7 +8,7 @@ import { FETCH_SEARCH_DATA } from "../../Redux/Action/type";
 import Checkbox from "../Form/Checkbox";
 import Dropdown from "../Form/Dropdown";
 import "./SearchController.css";
-class SearchNew extends Component {
+class SearchController extends Component {
   state = {
     searchValue: "",
     searchType: "mat",
@@ -194,4 +194,4 @@ const mapStateToProps = (state) => {
   };
 };
 
-export default connect(mapStateToProps)(SearchNew);
+export default connect(mapStateToProps)(SearchController);
