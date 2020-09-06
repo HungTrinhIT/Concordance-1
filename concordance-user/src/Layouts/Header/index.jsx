@@ -55,7 +55,7 @@ export default function Header() {
 
         <div className="direct-admin">
           <a href="http://localhost:3001/login" target="_blank">
-            Go to admin<i class="fa fa-directions ml-3"></i>
+            Go to admin<i className="fa fa-directions ml-3"></i>
           </a>
         </div>
       </nav>

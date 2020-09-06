@@ -91,7 +91,7 @@ class Homepage extends Component {
     return (
       <div className="container-fluid homepage">
         <div className="d-flex justify-content-between align-items-center header-admin">
-          <h3 className="admin-title">CONCORDANCE USER</h3>
+          <h3 className="admin-title">CONCORDANCE ADMIN</h3>
           <div className="d-flex align-items-center">
             {userContent}
             <div className="direct-admin ml-3 ">

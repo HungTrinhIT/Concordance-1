@@ -1,55 +1,39 @@
 import React, { Component } from "react";
-import "./SearchController.css";
 import { connect } from "react-redux";
-import Ner from "./Tag/Ner";
-import Pos from "./Tag/Pos";
-
+import Input from "../Form/Input";
+import RadioButton from "../Form/RadioButton";
 import { dataService } from "../../Services";
 import { createAction } from "../../Redux/Action";
 import { FETCH_SEARCH_DATA } from "../../Redux/Action/type";
-import Word from "./Word";
-
-class SearchController extends Component {
+import Checkbox from "../Form/Checkbox";
+import Dropdown from "../Form/Dropdown";
+import "./SearchController.css";
+class SearchNew extends Component {
   state = {
-    word: {
-      searchValue: "",
-      searchType: "",
-    },
-    tag: {
-      pos: "",
-      ner: "",
-    },
-    isRefresh: false,
+    searchValue: "",
+    searchType: "mat",
     loaded: false,
-  };
-  handleWord = ({ searchValue, searchType }) => {
-    let newWord = { searchValue: searchValue, searchType: searchType };
-    this.setState({ word: newWord, isRefresh: false });
-  };
-  handleTag = ({ key, value }) => {
-    let initTag = this.state.tag;
-    if (key === "pos") {
-      initTag.pos = value;
-    } else initTag.ner = value;
-    this.setState({
-      isRefresh: false,
-      tag: initTag,
-    });
-  };
-  handleRefresh = () => {
-    this.setState({
-      word: {
-        searchValue: "",
-        searchType: "",
-      },
-      tag: {
-        pos: "",
-        ner: "",
-      },
-      isRefresh: true,
-    });
+    posValue: "",
+    nerValue: "",
+    posAcceptance: false,
+    nerAcceptance: false,
   };
 
+  handleChange = (key) => (value) => {
+    if ((key === "posAcceptance" || key === "nerAcceptance") && !value) {
+      if (key === "posAcceptance") {
+        this.setState({
+          [key]: value,
+          posValue: "",
+        });
+      } else {
+        this.setState({
+          [key]: value,
+          nerValue: "",
+        });
+      }
+    } else this.setState({ [key]: value });
+  };
   // Submit search:
   // Request to server,
   // then get data if
@@ -59,13 +43,14 @@ class SearchController extends Component {
     e.preventDefault();
     let lang = this.props.languageType === "vietnamese" ? "vn" : "en";
     // this.props.dispatch(createAction(FETCH_SEARCH_DATA, DATA_TEST));
+    let tag = { pos: this.state.posValue, ner: this.state.nerValue };
     this.props.dispatch(createAction("RESET_LOADING", true));
     dataService
       .fetchData_Search(
-        this.state.word.searchValue,
-        this.state.word.searchType,
+        this.state.searchValue,
+        this.state.searchType,
         lang,
-        this.state.tag
+        tag
       )
       .then((res) => {
         this.props.dispatch(createAction(FETCH_SEARCH_DATA, res.data));
@@ -76,38 +61,113 @@ class SearchController extends Component {
         alert("Fail connection! Please try again!");
       });
   };
+  getTagsDetail = (typeTag) => {
+    let type = this.props.language.charAt(0) + typeTag;
+    return this.props.tags[`${type}`].map((item, index) => {
+      let descript = item.description;
+      if (item.description.length >= 30) {
+        descript = item.description.slice(0, 30) + "...";
+      }
+      return { value: item.tag, label: descript };
+    });
+  };
+  handleRefresh = () => {
+    this.setState({
+      searchValue: "",
+      searchType: "mat",
+      loaded: false,
+      posValue: "",
+      nerValue: "",
+      posAcceptance: false,
+      nerAcceptance: false,
+    });
+  };
   render() {
+    const {
+      searchValue,
+      searchType,
+      posAcceptance,
+      nerAcceptance,
+      posValue,
+      nerValue,
+    } = this.state;
+    let nerData = nerAcceptance ? this.getTagsDetail("Ner") : [];
+    let posData = posAcceptance ? this.getTagsDetail("Pos") : [];
+
     return (
       <div className="col-10 seach__controller mt-3">
         <form className="row" onSubmit={this.handleOnsubmit}>
-          {/* SEARCH BY WORD */}
+          {/*  Word */}
           <div className="col-5">
-            <Word
-              handleWord={this.handleWord}
-              isRefresh={this.state.isRefresh}
+            <p className="content__title">Word</p>
+            <Input
+              label="Search"
+              type="text"
+              placeholder="Enter keyword to search..."
+              onChange={this.handleChange("searchValue")}
+              value={searchValue}
             />
+            <div className="tag__choosen d-flex justify-content- algin-items-center">
+              <RadioButton
+                label="Match"
+                onChange={this.handleChange("searchType")}
+                selected={searchType === "mat"}
+                value="mat"
+              />
+              <RadioButton
+                label="Morohological"
+                onChange={this.handleChange("searchType")}
+                selected={searchType === "mor"}
+                value="mor"
+              />
+              <RadioButton
+                label="Phares"
+                onChange={this.handleChange("searchType")}
+                selected={searchType === "pha"}
+                value="pha"
+                disabled={true}
+              />
+            </div>
           </div>
+          {/* End Word */}
 
-          {/* SEARCH BY TAG */}
+          {/* Tag  */}
           <div className="search__tag col-4 ">
             <p className="content__title">Tag</p>
-            <div className="d-flex">
-              <div className="mr-2">
-                <Pos
-                  handleTag={this.handleTag}
-                  isRefresh={this.state.isRefresh}
+            <div>
+              <div className="pos d-flex align-items-center">
+                <Checkbox
+                  label="Pos"
+                  selected={posAcceptance}
+                  onChange={this.handleChange("posAcceptance")}
+                  styleClass="mr-3"
+                />
+                <Dropdown
+                  onChange={this.handleChange("posValue")}
+                  placeholder="Select pos"
+                  data={posData}
+                  value={posValue}
                 />
               </div>
-              <div>
-                <Ner
-                  handleTag={this.handleTag}
-                  isRefresh={this.state.isRefresh}
+              <div className="ner d-flex align-items-center">
+                <Checkbox
+                  label="Ner"
+                  selected={nerAcceptance}
+                  onChange={this.handleChange("nerAcceptance")}
+                  styleClass="mr-3"
+                />
+                <Dropdown
+                  onChange={this.handleChange("nerValue")}
+                  placeholder="Select ner"
+                  data={nerData}
+                  value={nerValue}
                 />
               </div>
             </div>
           </div>
+          {/* End tag */}
 
-          {/* Button SUBMIT SEARCHc */}
+          {/* Btn submit */}
           <div className="col-3 m-auto">
             <button type="submit" className="btn-search mr-2">
               SEARCH
@@ -120,6 +180,7 @@ class SearchController extends Component {
               REFRESH
             </button>
           </div>
+          {/* End btn submit */}
         </form>
       </div>
     );
@@ -128,8 +189,9 @@ class SearchController extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    languageType: state.Controller.language,
+    language: state.Controller.language,
+    tags: state.Tag.tags,
   };
 };
 
-export default connect(mapStateToProps)(SearchController);
+export default connect(mapStateToProps)(SearchNew);

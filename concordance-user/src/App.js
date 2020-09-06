@@ -18,8 +18,15 @@ import { dataService } from "./Services";
 import Footer from "./Layouts/Footer";
 import Spinner from "./Components/Spinner";
 import axios from "axios";
+import Input from "./Components/Form/Input";
 
 class App extends Component {
+  state = {
+    name: "",
+    age: "",
+    address: "",
+    email: "",
+  };
   componentDidMount() {
     // FETCH Vietnamese sentences
     dataService
@@ -50,9 +57,14 @@ class App extends Component {
       })
       .catch((error) => {
         alert(error.message);
-      }); 
+      });
   }
 
+  handleOnChange = (name, value) => {
+    this.setState({
+      [`${name}`]: value,
+    });
+  };
   render() {
     return (
       <BrowserRouter className="wrapper">

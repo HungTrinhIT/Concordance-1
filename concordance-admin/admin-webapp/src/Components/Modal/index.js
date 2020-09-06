@@ -56,7 +56,7 @@ class Modal extends Component {
     let modalContent = [];
     for (const [key] of entries) {
       let disabled = false;
-      if (key === "id" || key === "lang" || key === "sentence_id")
+      if (key === "id" || key === "lang" || key === "sentence_id" || key==="word_id")
         disabled = true;
       let label = key.charAt(0).toUpperCase() + key.slice(1);
       modalContent.push(
