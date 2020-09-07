@@ -12,6 +12,7 @@ import {
 } from "../../Redux/Action/type";
 import Modal from "../../Components/Modal";
 import Backdrop from "../../Components/Backdrop";
+import { ArcherContainer, ArcherElement } from 'react-archer';
 // const data = [
 //   {
 //     sentence_id: "000001",
@@ -103,24 +104,42 @@ class Home extends Component {
       modalToggle: !this.state.modalToggle,
     });
   };
+  handleScroll = () => {
+    this.myRef.refreshScreen();
+  };
   render() {
     let renderSource = null,
+      renderLine = null,
       renderTarget = null;
     if (this.props.detailSentence !== null) {
       renderSource = this.props.detailSentence.source.map((item, index) => {
         return (
-          <div className="word-item mr-5" key={index}>
-            <p className="mb-2">{item[8]}</p>
-            <p>{item[4]}</p>
-          </div>
+          <ArcherElement
+            id={"source"+index}
+            relations={[{
+              targetId: "target"+index,
+              targetAnchor: 'top',
+              sourceAnchor: 'bottom',
+              style: { strokeColor: 'blue', strokeWidth: 1,  },
+            }]}
+          >
+            <div className={"word-item mr-5"} key={index}>
+              <p className="mb-2">{item[8]}</p>
+              <p>{item[4]}</p>
+            </div>
+          </ArcherElement>
         );
       });
       renderTarget = this.props.detailSentence.target.map((item, index) => {
         return (
-          <div className="word-item mr-5" key={index}>
-            <p>{item[4]}</p>
-            <p className="mt-1">{item[8]}</p>
-          </div>
+          <ArcherElement
+            id={"target"+index}
+          >
+            <div className={"word-item mr-5"} key={index}>
+              <p className="mb-2">{item[8]}</p>
+              <p>{item[4]}</p>
+            </div>
+          </ArcherElement>
         );
       });
     }
@@ -168,14 +187,14 @@ class Home extends Component {
                 <p className="mt-2 mb-2">POS</p>
               </div>
             </div>
-            <div className="modal-content__right">
+            <ArcherContainer className="modal-content__right" >
               <div className="modal-content__item-right d-flex">
                 {renderSource}
               </div>
               <div className="modal-content__item-right d-flex">
                 {renderTarget}
               </div>
-            </div>
+            </ArcherContainer>
           </div>
           <div className="myModal-footer d-flex justify-content-end">
             <button onClick={this.openModalHandler}>CLOSE</button>
