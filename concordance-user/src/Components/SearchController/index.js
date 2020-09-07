@@ -8,6 +8,7 @@ import { FETCH_SEARCH_DATA } from "../../Redux/Action/type";
 import Checkbox from "../Form/Checkbox";
 import Dropdown from "../Form/Dropdown";
 import "./SearchController.css";
+
 class SearchController extends Component {
   state = {
     searchValue: "",
@@ -19,6 +20,7 @@ class SearchController extends Component {
     nerAcceptance: false,
   };
 
+  //Handle onChange event
   handleChange = (key) => (value) => {
     if ((key === "posAcceptance" || key === "nerAcceptance") && !value) {
       if (key === "posAcceptance") {
@@ -34,10 +36,11 @@ class SearchController extends Component {
       }
     } else this.setState({ [key]: value });
   };
+
   // Submit search:
   // Request to server,
   // then get data if
-  //    1 => setState in Redux ,
+  //    1 => dispatch data to Redux ,
   //    0 => Modal : alert to client
   handleOnsubmit = (e) => {
     e.preventDefault();
@@ -61,7 +64,9 @@ class SearchController extends Component {
         alert("Fail connection! Please try again!");
       });
   };
-  getTagsDetail = (typeTag) => {
+
+  // Get tag value base on tag and language
+  getTagsValue = (typeTag) => {
     let type = this.props.language.charAt(0) + typeTag;
     return this.props.tags[`${type}`].map((item, index) => {
       let descript = item.description;
@@ -71,6 +76,8 @@ class SearchController extends Component {
       return { value: item.tag, label: descript };
     });
   };
+
+  // Set State when Refresh button is trigged
   handleRefresh = () => {
     this.setState({
       searchValue: "",
@@ -83,6 +90,7 @@ class SearchController extends Component {
     });
   };
   render() {
+    //State
     const {
       searchValue,
       searchType,
@@ -91,17 +99,19 @@ class SearchController extends Component {
       posValue,
       nerValue,
     } = this.state;
-    let nerData = nerAcceptance ? this.getTagsDetail("Ner") : [];
-    let posData = posAcceptance ? this.getTagsDetail("Pos") : [];
+
+    //Get data for Dropdown component: eNer, vNer, ePos or vPos
+    let nerData = nerAcceptance ? this.getTagsValue("Ner") : [];
+    let posData = posAcceptance ? this.getTagsValue("Pos") : [];
 
     return (
       <div className="col-10 seach__controller mt-3">
+        {/* Form Search */}
         <form className="row" onSubmit={this.handleOnsubmit}>
           {/*  Word */}
           <div className="col-5">
             <p className="content__title">Word</p>
             <Input
-              label="Search"
               type="text"
               placeholder="Enter keyword to search..."
               onChange={this.handleChange("searchValue")}
@@ -113,12 +123,14 @@ class SearchController extends Component {
                 onChange={this.handleChange("searchType")}
                 selected={searchType === "mat"}
                 value="mat"
+                styleClass="mr-3"
               />
               <RadioButton
-                label="Morohological"
+                label="Morphological"
                 onChange={this.handleChange("searchType")}
                 selected={searchType === "mor"}
                 value="mor"
+                styleClass="mr-3"
               />
               <RadioButton
                 label="Phares"
@@ -132,15 +144,15 @@ class SearchController extends Component {
           {/* End Word */}
 
           {/* Tag  */}
-          <div className="search__tag col-4 ">
+          <div className="search__tag col-4 px-auto">
             <p className="content__title">Tag</p>
             <div>
-              <div className="pos d-flex align-items-center">
+              <div className="pos d-flex align-items-center mb-3">
                 <Checkbox
                   label="Pos"
                   selected={posAcceptance}
                   onChange={this.handleChange("posAcceptance")}
-                  styleClass="mr-3"
+                  styleClass="mr-2"
                 />
                 <Dropdown
                   onChange={this.handleChange("posValue")}
@@ -154,7 +166,7 @@ class SearchController extends Component {
                   label="Ner"
                   selected={nerAcceptance}
                   onChange={this.handleChange("nerAcceptance")}
-                  styleClass="mr-3"
+                  styleClass="mr-2"
                 />
                 <Dropdown
                   onChange={this.handleChange("nerValue")}
@@ -182,11 +194,13 @@ class SearchController extends Component {
           </div>
           {/* End btn submit */}
         </form>
+        {/* End form search */}
       </div>
     );
   }
 }
 
+// Get State from Redux store to props
 const mapStateToProps = (state) => {
   return {
     language: state.Controller.language,
@@ -194,4 +208,5 @@ const mapStateToProps = (state) => {
   };
 };
 
+// Connect component SearchController with Redux store
 export default connect(mapStateToProps)(SearchController);

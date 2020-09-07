@@ -37,3 +37,8 @@
 .header .nav-item .nav-link {
   letter-spacing: 1px;
 }
+
+.is-active{
+  padding-bottom: 5px;
+  border: 2px solid #ffffff;
+}

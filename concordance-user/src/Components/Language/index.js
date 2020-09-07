@@ -3,14 +3,15 @@ import "./ShowLanguage.css";
 import { connect } from "react-redux";
 import { createAction } from "../../Redux/Action";
 import { LANGUAGE_TYPE } from "../../Redux/Action/type";
+import RadioButton from "../Form/RadioButton";
 class ShowLanguage extends Component {
   state = {
     language: "english",
   };
-  handleTypeLanguageChange = (e) => {
+  handleTypeLanguageChange = (key) => (value) => {
     this.setState(
       {
-        language: e.target.value,
+        [key]: value,
       },
       () => {
         this.props.dispatch(createAction(LANGUAGE_TYPE, this.state.language));
@@ -18,36 +19,25 @@ class ShowLanguage extends Component {
     );
   };
   render() {
+    const { language } = this.state;
     return (
       <div className="col-2 language mt-3">
         <p className="content__title">Source language</p>
-        <div className="language__choosen d-flex justify-content-start align-items-center">
-          <div className="form-check mr-3">
-            <label className="form-check-label">
-              <input
-                type="radio"
-                className="form-check-input"
-                name="typeLanguage"
-                value="english"
-                onChange={this.handleTypeLanguageChange}
-                checked={this.state.language === "english"}
-              />
-              English
-            </label>
-          </div>
-          <div className="form-check">
-            <label className="form-check-label">
-              <input
-                type="radio"
-                className="form-check-input"
-                name="typeLanguage"
-                value="vietnamese"
-                onChange={this.handleTypeLanguageChange}
-                checked={this.state.language === "vietnamese"}
-              />
-              Vietnamese
-            </label>
-          </div>
+
+        <div className="language">
+          <RadioButton
+            label="English"
+            onChange={this.handleTypeLanguageChange("language")}
+            selected={language === "english"}
+            value="english"
+            styleClass="mb-3"
+          />
+          <RadioButton
+            label="Vietnamese"
+            onChange={this.handleTypeLanguageChange("language")}
+            selected={language === "vietnamese"}
+            value="vietnamese"
+          />
         </div>
       </div>
     );

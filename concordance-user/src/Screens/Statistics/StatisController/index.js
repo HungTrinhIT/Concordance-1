@@ -23,7 +23,7 @@ class StatisController extends Component {
   };
   refreshHandler = () => {
     this.setState({
-      num: "all",
+      num: "top",
       lang: "en",
       count: 100,
       typeTag: "",
@@ -74,7 +74,7 @@ class StatisController extends Component {
         <div className="controller-wrapper">
           <p className="controller__item">Language</p>
           <div className="d-flex controller__item-ctn">
-            <div className="form-check mr-3">
+            <div className="form-check mr-2">
               <label className="form-check-label">
                 <input
                   type="radio"
@@ -83,6 +83,7 @@ class StatisController extends Component {
                   value="en"
                   onChange={this.onChangleHandler}
                   checked={this.state.lang === "en"}
+                  className="mr-2"
                 />
                 English
               </label>
@@ -96,6 +97,7 @@ class StatisController extends Component {
                   value="vn"
                   onChange={this.onChangleHandler}
                   checked={this.state.lang === "vn"}
+                  className="mr-2"
                 />
                 Vietnamese
               </label>
@@ -106,7 +108,7 @@ class StatisController extends Component {
         <div className="controller-wrapper">
           <p className="controller__item">Numbers</p>
           <div className="controller__item-ctn">
-            <div className="form-check mr-3 mb-2">
+            <div className="form-check mr-2 mb-2">
               <label className="form-check-label">
                 <input
                   type="radio"
@@ -115,11 +117,12 @@ class StatisController extends Component {
                   value="all"
                   onChange={this.onChangleHandler}
                   checked={this.state.num === "all"}
+                  className="mr-2"
                 />
                 All words
               </label>
             </div>
-            <div className="form-check mr-3 d-flex algin-items-center">
+            <div className="form-check mr-2 d-flex algin-items-center">
               <label className="form-check-label mr-4">
                 <input
                   type="radio"
@@ -128,6 +131,7 @@ class StatisController extends Component {
                   value="top"
                   onChange={this.onChangleHandler}
                   checked={this.state.num === "top"}
+                  className="mr-2"
                 />
                 Top
               </label>
@@ -137,6 +141,7 @@ class StatisController extends Component {
                 value={this.state.count}
                 onChange={this.onChangleHandler}
                 disabled={this.state.num === "top" ? false : true}
+                className="mr-2"
               />
             </div>
           </div>
@@ -155,6 +160,7 @@ class StatisController extends Component {
                     value=""
                     onChange={this.onChangleHandler}
                     checked={this.state.typeTag === ""}
+                    className="mr-2"
                   />
                   No tag
                 </label>
@@ -168,6 +174,7 @@ class StatisController extends Component {
                     value="pos"
                     onChange={this.onChangleHandler}
                     checked={this.state.typeTag === "pos"}
+                    className="mr-2"
                   />
                   POS
                 </label>
@@ -181,6 +188,7 @@ class StatisController extends Component {
                     value="ner"
                     onChange={this.onChangleHandler}
                     checked={this.state.typeTag === "ner"}
+                    className="mr-2"
                   />
                   NER
                 </label>

@@ -36,13 +36,15 @@ const Input = ({
           onChange={handleChange}
         />
       ) : (
-        <input
-          type={type}
-          value={value}
-          className="form-control"
-          placeholder={placeholder}
-          onChange={handleChange}
-        />
+        <div className="search__container">
+          <input
+            type={type}
+            value={value}
+            className="search__input"
+            placeholder={placeholder}
+            onChange={handleChange}
+          />
+        </div>
       )}
       {error && <span className="text-danger">{error.message}</span>}
     </div>

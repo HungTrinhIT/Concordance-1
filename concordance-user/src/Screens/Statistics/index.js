@@ -82,7 +82,7 @@ class Statistics extends Component {
       } else {
         sumaryData = (
           <div className="col-12">
-           <ul>
+            <ul>
               <li>
                 Total word types:{" "}
                 <span className="text-danger font-weight-bold">

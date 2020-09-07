@@ -92,7 +92,7 @@ class Search extends Component {
     }
     return (
       <div className="myContainer">
-        <div className="row">
+        <div className="row pb-2">
           <ShowLanguage />
           <SearchController />
         </div>
