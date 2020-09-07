@@ -18,7 +18,6 @@ import { dataService } from "./Services";
 import Footer from "./Layouts/Footer";
 import Spinner from "./Components/Spinner";
 import axios from "axios";
-import Input from "./Components/Form/Input";
 
 class App extends Component {
   state = {

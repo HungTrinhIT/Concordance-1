@@ -7,6 +7,7 @@ import "./Search.css";
 import SearchController from "../../Components/SearchController";
 import Modal from "../../Components/Modal";
 import Backdrop from "../../Components/Backdrop";
+import { ArcherContainer, ArcherElement } from "react-archer";
 
 class Search extends Component {
   state = {
@@ -30,19 +31,45 @@ class Search extends Component {
       renderTarget = null;
     if (this.props.detailSentence !== null) {
       renderSource = this.props.detailSentence.source.map((item, index) => {
-        return (
-          <div className="word-item mr-5" key={index}>
-            <p className="mb-2">{item[8]}</p>
-            <p>{item[4]}</p>
-          </div>
-        );
+        let linkArr = item[6].trim().split(",");
+        if (linkArr[0] !== "-") {
+          let relationsResult = [];
+          for (let i = 0; i < linkArr.length; i++) {
+            let obj = {
+              targetId: "target" + linkArr[i],
+              targetAnchor: "top",
+              sourceAnchor: "bottom",
+              style: { strokeColor: "#275efe", strokeWidth: 1 },
+            };
+            relationsResult.push(obj);
+          }
+          return (
+            <ArcherElement id={item[3]} relations={relationsResult}>
+              <div className={"word-item mr-5 "} key={index}>
+                <p className="mb-2">{item[8]}</p>
+                <p className="mb-2">{item[4]}</p>
+              </div>
+            </ArcherElement>
+          );
+        } else
+          return (
+            <div className={"word-item mr-5"} key={index}>
+              <p className="mb-2">{item[8]}</p>
+              <p className="mb-2">{item[4]}</p>
+            </div>
+          );
       });
       renderTarget = this.props.detailSentence.target.map((item, index) => {
+        let idRes = item[3];
+        if (idRes.slice(0, 1) === "0") idRes = idRes.slice(1);
+        idRes = "target" + idRes;
         return (
-          <div className="word-item mr-5" key={index}>
-            <p>{item[4]}</p>
-            <p className="mt-1">{item[8]}</p>
-          </div>
+          <ArcherElement id={idRes}>
+            <div className={"word-item mr-5"} key={index}>
+              <p>{item[4]}</p>
+              <p className="mt-1">{item[8]}</p>
+            </div>
+          </ArcherElement>
         );
       });
     }
@@ -104,6 +131,7 @@ class Search extends Component {
 
         {/* Search table */}
         {tables}
+        {/* Modal show alignment */}
         <Modal
           show={this.state.modalToggle}
           modalClosed={this.openModalHandler}
@@ -116,24 +144,22 @@ class Search extends Component {
             <div className="modal-content__left">
               <div className="modal-content__item-left mt-2">
                 <p className="mb-2">POS</p>
-                <p className="source-title">
-                  {this.props.language === "english" ? "English" : "Vietnamese"}
-                </p>
+                <p className="source-title">Source</p>
               </div>
               <div className="modal-content__item-left">
-                <p className="source-title">
-                  {this.props.language !== "english" ? "English" : "Vietnamese"}
-                </p>
-                <p className="mt-2 mb-2">POS</p>
+                <p className="source-title">Target</p>
+                <p className="mt-2 mb-3">POS</p>
               </div>
             </div>
             <div className="modal-content__right">
-              <div className="modal-content__item-right d-flex">
-                {renderSource}
-              </div>
-              <div className="modal-content__item-right d-flex">
-                {renderTarget}
-              </div>
+              <ArcherContainer>
+                <div className="modal-content__item-right d-flex source">
+                  {renderSource}
+                </div>
+                <div className="modal-content__item-right d-flex">
+                  {renderTarget}
+                </div>
+              </ArcherContainer>
             </div>
           </div>
           <div className="myModal-footer d-flex justify-content-end">

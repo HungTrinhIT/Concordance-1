@@ -38,7 +38,6 @@ class Homepage extends Component {
   }
 
   shouldComponentUpdate(nextProps, nextState) {
-    console.log(nextProps.pageNumber);
     if (this.props.pageNumber !== nextProps.pageNumber) {
       dataService
         .fetchLanguageData_pagination(nextProps.pageNumber, "vndata")

@@ -45,7 +45,6 @@ class SearchController extends Component {
   handleOnsubmit = (e) => {
     e.preventDefault();
     let lang = this.props.languageType === "vietnamese" ? "vn" : "en";
-    // this.props.dispatch(createAction(FETCH_SEARCH_DATA, DATA_TEST));
     let tag = { pos: this.state.posValue, ner: this.state.nerValue };
     this.props.dispatch(createAction("RESET_LOADING", true));
     dataService

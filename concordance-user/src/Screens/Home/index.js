@@ -12,57 +12,7 @@ import {
 } from "../../Redux/Action/type";
 import Modal from "../../Components/Modal";
 import Backdrop from "../../Components/Backdrop";
-import { ArcherContainer, ArcherElement } from 'react-archer';
-// const data = [
-//   {
-//     sentence_id: "000001",
-//     sentence: "' Nếu điều đó giữ được hạnh_phúc gia_đình thì vẫn còn hời đấy !",
-//   },
-//   {
-//     sentence_id: "000002",
-//     sentence:
-//       "' Renbim ' có nghĩa là ' nhân_dân ' và ' bi ' có nghĩa là ' tiền_tệ ' hoặc ' tiền ' .",
-//   },
-//   {
-//     sentence_id: "000003",
-//     sentence:
-//       'Xin cám_ơn ông đã cho chúng_tôi xem bộ sưu_tập hoạ_phẩm của ông , " Đó là đặc_ân của tôi " .',
-//   },
-//   {
-//     sentence_id: "000004",
-//     sentence: "' Nếu điều đó giữ được hạnh_phúc gia_đình thì vẫn còn hời đấy !",
-//   },
-//   {
-//     sentence_id: "000005",
-//     sentence:
-//       "' Renbim ' có nghĩa là ' nhân_dân ' và ' bi ' có nghĩa là ' tiền_tệ ' hoặc ' tiền ' .",
-//   },
-//   {
-//     sentence_id: "000006",
-//     sentence:
-//       'Xin cám_ơn ông đã cho chúng_tôi xem bộ sưu_tập hoạ_phẩm của ông , " Đó là đặc_ân của tôi " .',
-//   },
-//   {
-//     sentence_id: "000007",
-//     sentence: "' Nếu điều đó giữ được hạnh_phúc gia_đình thì vẫn còn hời đấy !",
-//   },
-//   {
-//     sentence_id: "000008",
-//     sentence:
-//       "' Renbim ' có nghĩa là ' nhân_dân ' và ' bi ' có nghĩa là ' tiền_tệ ' hoặc ' tiền ' .",
-//   },
-//   {
-//     sentence_id: "000009",
-//     sentence:
-//       'Xin cám_ơn ông đã cho chúng_tôi xem bộ sưu_tập hoạ_phẩm của ông , " Đó là đặc_ân của tôi " .',
-//   },
-//   {
-//     sentence_id: "0000010",
-//     sentence:
-//       'Xin cám_ơn ông đã cho chúng_tôi xem bộ sưu_tập hoạ_phẩm của ông , " Đó là đặc_ân của tôi " .',
-//   },
-// ];
-
+import { ArcherContainer, ArcherElement } from "react-archer";
 class Home extends Component {
   state = {
     rowSelected: null,
@@ -109,35 +59,46 @@ class Home extends Component {
   };
   render() {
     let renderSource = null,
-      renderLine = null,
       renderTarget = null;
     if (this.props.detailSentence !== null) {
       renderSource = this.props.detailSentence.source.map((item, index) => {
-        return (
-          <ArcherElement
-            id={"source"+index}
-            relations={[{
-              targetId: "target"+index,
-              targetAnchor: 'top',
-              sourceAnchor: 'bottom',
-              style: { strokeColor: 'blue', strokeWidth: 1,  },
-            }]}
-          >
+        let linkArr = item[6].trim().split(",");
+        if (linkArr[0] !== "-") {
+          let relationsResult = [];
+          for (let i = 0; i < linkArr.length; i++) {
+            let obj = {
+              targetId: "target" + linkArr[i],
+              targetAnchor: "top",
+              sourceAnchor: "bottom",
+              style: { strokeColor: "#275efe", strokeWidth: 1 },
+            };
+            relationsResult.push(obj);
+          }
+          return (
+            <ArcherElement id={item[3]} relations={relationsResult}>
+              <div className={"word-item mr-5 "} key={index}>
+                <p className="mb-2">{item[8]}</p>
+                <p className="mb-2">{item[4]}</p>
+              </div>
+            </ArcherElement>
+          );
+        } else
+          return (
             <div className={"word-item mr-5"} key={index}>
               <p className="mb-2">{item[8]}</p>
-              <p>{item[4]}</p>
+              <p className="mb-2">{item[4]}</p>
             </div>
-          </ArcherElement>
-        );
+          );
       });
       renderTarget = this.props.detailSentence.target.map((item, index) => {
+        let idRes = item[3];
+        if (idRes.slice(0, 1) === "0") idRes = idRes.slice(1);
+        idRes = "target" + idRes;
         return (
-          <ArcherElement
-            id={"target"+index}
-          >
+          <ArcherElement id={idRes}>
             <div className={"word-item mr-5"} key={index}>
-              <p className="mb-2">{item[8]}</p>
               <p>{item[4]}</p>
+              <p className="mt-1">{item[8]}</p>
             </div>
           </ArcherElement>
         );
@@ -176,25 +137,23 @@ class Home extends Component {
             <div className="modal-content__left">
               <div className="modal-content__item-left mt-2">
                 <p className="mb-2">POS</p>
-                <p className="source-title">
-                  Vietnamese
-                </p>
+                <p className="source-title">Source</p>
               </div>
               <div className="modal-content__item-left">
-                <p className="source-title">
-                  English
-                </p>
-                <p className="mt-2 mb-2">POS</p>
+                <p className="source-title">Target</p>
+                <p className="mt-2 mb-3">POS</p>
               </div>
             </div>
-            <ArcherContainer className="modal-content__right" >
-              <div className="modal-content__item-right d-flex">
-                {renderSource}
-              </div>
-              <div className="modal-content__item-right d-flex">
-                {renderTarget}
-              </div>
-            </ArcherContainer>
+            <div className="modal-content__right">
+              <ArcherContainer>
+                <div className="modal-content__item-right d-flex source">
+                  {renderSource}
+                </div>
+                <div className="modal-content__item-right d-flex">
+                  {renderTarget}
+                </div>
+              </ArcherContainer>
+            </div>
           </div>
           <div className="myModal-footer d-flex justify-content-end">
             <button onClick={this.openModalHandler}>CLOSE</button>

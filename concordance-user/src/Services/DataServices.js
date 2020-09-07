@@ -28,7 +28,6 @@ class DataService {
         getSearchUrl +=
           `q=${searchValue}&` + `qt=${searchType}&` + `lang=${lang}`;
     } else getSearchUrl += tagURL;
-    console.log(getSearchUrl)
     return axios({
       method: "GET",
       url: getSearchUrl,
@@ -51,7 +50,6 @@ class DataService {
     } else if (typeTag !== "") {
       urlData += `&${typeTag}=${typeTagDetail}`;
     }
-    console.log(urlData);
     return axios({
       method: "GET",
       url: urlData,
